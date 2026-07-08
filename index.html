@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vortynix — mission control for Android</title>
 <meta name="description" content="A control deck for running many Android instances at once. Multi-instance mirroring, zone shortcuts, per-device audio and broadcast — from one cockpit.">
+<link rel="canonical" href="https://vortynix.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vortynix.app/">
+<meta property="og:title" content="Vortynix — mission control for Android">
+<meta property="og:description" content="Run many Android apps at once, each on its own virtual display, from one control deck. Multi-instance mirroring, shortcuts, audio and broadcast.">
+<!-- PLACEHOLDER: 1200x630 preview image, e.g. https://vortynix.app/assets/og.png -->
+<meta property="og:image" content="https://vortynix.app/assets/og.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vortynix — mission control for Android">
+<meta name="twitter:description" content="Run many Android apps at once, each on its own virtual display, from one control deck.">
+<meta name="twitter:image" content="https://vortynix.app/assets/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -194,55 +207,41 @@ h1 .sweep{
 .chip .nm{font-family:var(--mono);font-size:12px;color:var(--ink2)}
 .chip .hex{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:2px}
 
-/* ===== PRICING ===== */
-.plan-toggle{display:inline-flex;align-items:center;gap:0;border:1px solid var(--edge2);
-  border-radius:10px;padding:3px;background:var(--panel);margin-bottom:8px;position:relative}
-.plan-toggle button{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--ink2);
-  background:none;border:none;cursor:pointer;padding:9px 18px;border-radius:7px;transition:color .2s;
-  position:relative;z-index:2;letter-spacing:.02em}
-.plan-toggle button.active{color:#03110e}
-.plan-toggle .toggle-thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);
-  background:var(--hud);border-radius:7px;transition:transform .25s cubic-bezier(.4,.1,.2,1);z-index:1;
-  box-shadow:0 2px 12px -2px var(--hud)}
-.plan-toggle.annual .toggle-thumb{transform:translateX(100%)}
-.save-flag{font-family:var(--mono);font-size:11px;color:var(--hud);margin-left:12px;
-  border:1px solid var(--hud);border-radius:6px;padding:3px 8px;background:var(--hud-dim);letter-spacing:.03em}
-
-.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;max-width:760px}
-@media(max-width:640px){.plans{grid-template-columns:1fr}}
-.plan{border:1px solid var(--edge);border-radius:16px;padding:30px;background:var(--panel);
-  position:relative;overflow:hidden;transition:border-color .25s,transform .25s,background .25s}
-.plan:hover{border-color:var(--edge2);transform:translateY(-3px);background:var(--panel2)}
-.plan.featured{border-color:var(--hud)}
-.plan.featured::before{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(90% 70% at 50% 0%,var(--hud-dim),transparent 60%)}
-.plan .badge{position:absolute;top:16px;right:16px;font-family:var(--mono);font-size:10px;
-  letter-spacing:.1em;color:#03110e;background:var(--hud);padding:3px 9px;border-radius:6px;font-weight:700}
-.plan .p-name{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink2);
-  text-transform:uppercase;margin-bottom:16px;position:relative}
-.plan .p-price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;position:relative}
-.plan .p-price .amt{font-size:46px;font-weight:700;letter-spacing:-.03em;
-  background:linear-gradient(120deg,#fff,var(--steel));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.plan .p-price .per{font-family:var(--mono);font-size:13px;color:var(--ink3)}
-.plan .p-sub{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-bottom:22px;
-  min-height:16px;position:relative}
-.plan .p-sub b{color:var(--hud);font-weight:500}
-.plan .p-cta{display:block;text-align:center;font-family:var(--mono);font-size:13px;font-weight:600;
-  padding:12px;border-radius:9px;transition:all .2s;position:relative;cursor:pointer;border:1px solid transparent}
-.plan .p-cta.go{background:var(--hud);color:#03110e;box-shadow:0 0 0 1px var(--hud),0 8px 24px -8px var(--hud)}
-.plan .p-cta.go:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--hud),0 12px 30px -8px var(--hud)}
-.plan .p-cta.ghost{background:transparent;color:var(--ink);border-color:var(--edge2)}
-.plan .p-cta.ghost:hover{border-color:var(--steel);background:var(--panel)}
-.plan .p-list{list-style:none;margin:22px 0 0;padding-top:22px;border-top:1px solid var(--edge);
-  display:flex;flex-direction:column;gap:10px;position:relative}
-.plan .p-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink2)}
-.plan .p-list li .ck{flex-shrink:0;width:18px;height:18px;border-radius:5px;margin-top:1px;
-  background:var(--deck);border:1px solid var(--edge2);display:flex;align-items:center;justify-content:center;
-  font-size:11px;color:var(--hud)}
-.pricing-note{font-family:var(--mono);font-size:11.5px;color:var(--ink3);margin-top:20px;
-  display:flex;align-items:center;gap:8px}
 
 .launch{margin:110px 0 60px}
+
+/* ===== changelog modal ===== */
+.cl-backdrop{position:fixed;inset:0;z-index:200;background:rgba(3,5,7,.78);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
+.cl-backdrop.open{display:flex}
+.cl-modal{width:600px;max-width:100%;max-height:82vh;display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--edge2);border-radius:18px;overflow:hidden;
+  box-shadow:0 40px 120px -30px #000,inset 0 0 60px rgba(92,224,200,.03)}
+.cl-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;
+  border-bottom:1px solid var(--edge);background:var(--void)}
+.cl-head .t{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:13px;
+  font-weight:600;color:var(--hud);letter-spacing:.1em;text-transform:uppercase}
+.cl-head .t .core{width:13px;height:13px;border-radius:3px;position:relative;
+  background:conic-gradient(from 45deg,#1b2530,#0c1218);border:1px solid var(--edge2)}
+.cl-head .t .core::after{content:'';position:absolute;inset:0;margin:auto;width:4px;height:4px;border-radius:50%;
+  background:var(--hud);box-shadow:0 0 8px var(--hud)}
+.cl-x{background:none;border:1px solid var(--edge2);color:var(--ink2);width:30px;height:30px;border-radius:8px;
+  cursor:pointer;font-size:18px;line-height:1;transition:all .2s}
+.cl-x:hover{color:var(--ink);border-color:var(--steel);background:var(--panel2)}
+.cl-body{padding:22px;overflow-y:auto}
+.cl-rel{margin-bottom:26px}
+.cl-rel:last-child{margin-bottom:0}
+.cl-rel-head{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--edge2);
+  display:flex;align-items:baseline;gap:10px}
+.cl-rel-head .v{font-family:var(--grot);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.cl-rel-head .whats{font-family:var(--mono);font-size:11px;color:var(--hud);letter-spacing:.1em;text-transform:uppercase}
+.cl-item{display:flex;align-items:flex-start;gap:11px;margin-bottom:11px}
+.cl-tag{flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.04em;
+  padding:3px 8px;border-radius:5px;min-width:60px;text-align:center;margin-top:1px}
+.cl-tag.add{color:var(--hud);background:var(--hud-dim)}
+.cl-tag.chg{color:#9d8bff;background:rgba(157,139,255,.12)}
+.cl-tag.fix{color:var(--amber);background:rgba(245,180,79,.12)}
+.cl-item span.txt{font-size:13.5px;color:var(--ink2);line-height:1.55}
 .launch-panel{
   border:1px solid var(--edge2);border-radius:20px;overflow:hidden;background:var(--panel);position:relative}
 .launch-panel::before{content:'';position:absolute;inset:0;pointer-events:none;
@@ -290,9 +289,9 @@ footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mo
   <div class="rail-right">
     <a href="#instruments">Instruments</a>
     <a href="#sequence">Sequence</a>
-    <a href="#pricing">Pricing</a>
+    <a href="#" onclick="openChangelog();return false">Changelog</a>
     <a href="#themes">Themes</a>
-    <a href="#launch" class="rail-cta">DOWNLOAD ↓</a>
+    <a href="https://www.patreon.com/cw/Vortynix" class="rail-cta">GO TO PATREON ↗</a>
   </div>
 </div>
 
@@ -305,7 +304,7 @@ footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mo
     <div class="hero-side reveal">
       <p>Vortynix is the control deck for running many Android apps at once — each on its own virtual display, all wired into a single window you actually pilot.</p>
       <div class="actions">
-        <a href="#launch" class="btn btn-go">↧ DOWNLOAD FOR WINDOWS</a>
+        <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-go">↗ GO TO PATREON</a>
         <a href="#sequence" class="btn btn-sec">▶ RUN DEMO</a>
       </div>
     </div>
@@ -471,72 +470,15 @@ footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mo
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="frame" id="pricing">
-  <div class="section-mark reveal">
-    <span class="idx">[ 04 ]</span>
-    <h2>Pricing</h2>
-    <span class="rule"></span>
-  </div>
-
-  <div class="reveal">
-    <div class="plan-toggle" id="plan-toggle">
-      <span class="toggle-thumb"></span>
-      <button class="active" data-cycle="monthly" onclick="setCycle('monthly')">MONTHLY</button>
-      <button data-cycle="annual" onclick="setCycle('annual')">ANNUAL</button>
-    </div>
-    <span class="save-flag" id="save-flag" style="display:none">2 MONTHS FREE</span>
-  </div>
-
-  <div class="plans reveal">
-    <!-- Free / trial-style tier: kept simple, points to download -->
-    <div class="plan">
-      <div class="p-name">Trial</div>
-      <div class="p-price"><span class="amt">Free</span></div>
-      <div class="p-sub">Try Vortynix before you commit.</div>
-      <a href="#launch" class="p-cta ghost">↧ DOWNLOAD</a>
-      <ul class="p-list">
-        <li><span class="ck">✓</span> Full app, no install on the phone</li>
-        <li><span class="ck">✓</span> Explore multi-instance mirroring</li>
-        <li><span class="ck">✓</span> Activate a plan anytime to keep going</li>
-      </ul>
-    </div>
-
-    <!-- Paid tier: price swaps with the toggle -->
-    <div class="plan featured">
-      <span class="badge" id="plan-badge">MONTHLY</span>
-      <div class="p-name">Pilot</div>
-      <div class="p-price">
-        <span class="amt" id="price-amt">$5</span>
-        <span class="per" id="price-per">/ month</span>
-      </div>
-      <div class="p-sub" id="price-sub">Billed monthly. Cancel anytime.</div>
-      <!-- PLACEHOLDER: set href to your Lemon Squeezy checkout URLs -->
-      <a href="#" class="p-cta go" id="buy-link" data-ph="checkout-monthly">SUBSCRIBE →</a>
-      <ul class="p-list">
-        <li><span class="ck">✓</span> Unlimited instances &amp; multi-device</li>
-        <li><span class="ck">✓</span> Zone shortcuts, broadcast &amp; audio mixer</li>
-        <li><span class="ck">✓</span> Secure Folder support, all 8 themes</li>
-        <li><span class="ck">✓</span> Auto-updates &amp; new features</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pricing-note reveal">
-    <span class="blink"></span> Taxes handled at checkout · secure payment · activates on one device
-  </div>
-</section>
-
 <section class="frame launch" id="launch">
   <div class="launch-panel reveal">
     <div class="launch-grid">
       <div class="launch-main">
-        <div class="lead">▓ CLEARED FOR DOWNLOAD</div>
+        <div class="lead">▓ CLEARED FOR LAUNCH</div>
         <h2>Take the deck.</h2>
-        <p>Install Vortynix for Windows and start piloting your instances in minutes. Free to try.</p>
+        <p>Subscribe on Patreon to get your license key and your member role. Start piloting your instances in minutes.</p>
         <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="#" class="btn btn-go" data-ph="download-link">↧ DOWNLOAD v1.7.0</a>
-          <a href="#" class="btn btn-sec" data-ph="github-link">◇ SOURCE ON GITHUB</a>
+          <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-go">↗ GO TO PATREON</a>
         </div>
       </div>
       <div class="launch-side">
@@ -562,18 +504,17 @@ footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mo
         <a href="#instruments">Instruments</a>
         <a href="#sequence">Sequence</a>
         <a href="#themes">Palettes</a>
-        <a href="#launch">Download</a>
+        <a href="https://www.patreon.com/cw/Vortynix">Get Vortynix</a>
       </div>
       <div class="foot-col">
         <h5>SIGNAL</h5>
-        <a href="#" data-ph="link">Documentation</a>
-        <a href="#" data-ph="link">Changelog</a>
-        <a href="#" data-ph="link">Report a bug</a>
+        <a href="#" onclick="openChangelog();return false">Changelog</a>
+        <a href="https://discord.gg/KZHeDJzMgg">Report a bug</a>
       </div>
       <div class="foot-col">
         <h5>CREW</h5>
-        <a href="#" data-ph="link">Discord</a>
-        <a href="#" data-ph="link">GitHub</a>
+        <a href="https://discord.gg/KZHeDJzMgg">Discord</a>
+        <a href="https://www.patreon.com/cw/Vortynix">Patreon</a>
       </div>
     </div>
   </div>
@@ -583,34 +524,95 @@ footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mo
   </div>
 </footer>
 
+<!-- Changelog modal -->
+<div class="cl-backdrop" id="cl-backdrop" onclick="if(event.target===this)closeChangelog()">
+  <div class="cl-modal">
+    <div class="cl-head">
+      <span class="t"><span class="core"></span>Changelog</span>
+      <button class="cl-x" onclick="closeChangelog()" aria-label="Close">×</button>
+    </div>
+    <div class="cl-body" id="cl-body"></div>
+  </div>
+</div>
+
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%5,4)*0.05)+'s';io.observe(el);});
 
-// ── Pricing toggle: monthly $5/mo  ·  annual $50/yr (2 months free) ──
-// PLACEHOLDER: replace these with your Lemon Squeezy checkout URLs.
-const CHECKOUT = {
-  monthly: '#',   // e.g. https://YOURSTORE.lemonsqueezy.com/buy/UUID-MONTHLY
-  annual:  '#',   // e.g. https://YOURSTORE.lemonsqueezy.com/buy/UUID-ANNUAL
-};
-const PRICING = {
-  monthly: { amt:'$5',  per:'/ month', sub:'Billed monthly. Cancel anytime.',        badge:'MONTHLY' },
-  annual:  { amt:'$50', per:'/ year',  sub:'<b>$4.17/mo</b> billed yearly · save $10', badge:'BEST VALUE' },
-};
-function setCycle(cycle){
-  const t = document.getElementById('plan-toggle');
-  t.classList.toggle('annual', cycle==='annual');
-  t.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b.dataset.cycle===cycle));
-  const p = PRICING[cycle];
-  document.getElementById('price-amt').textContent = p.amt;
-  document.getElementById('price-per').textContent = p.per;
-  document.getElementById('price-sub').innerHTML   = p.sub;
-  document.getElementById('plan-badge').textContent = p.badge;
-  document.getElementById('save-flag').style.display = cycle==='annual' ? '' : 'none';
-  const buy = document.getElementById('buy-link');
-  buy.setAttribute('href', CHECKOUT[cycle]);
-  buy.setAttribute('data-ph', 'checkout-'+cycle);
+// ── Changelog ──────────────────────────────────────────────────────────────
+const CHANGELOG = [
+  { ver:'v1.7.0', items:[
+    { t:'add', txt:'Audio to PC — device audio is captured and played on your computer. Requires Android 13+. Capturing routes the sound to the PC and mutes the phone speaker.' },
+    { t:'add', txt:'Audio mixer — a new Audio button in the topbar opens a per-device volume and mute panel (one audio mix per phone).' },
+    { t:'add', txt:'Changelog window.' },
+    { t:'chg', txt:'Redesigned topbar — navigation is now a segmented control with a sliding highlight; status pills moved to the right behind a divider.' },
+    { t:'chg', txt:'Broadcast button appears when 2+ instances are active; the hide-bar button appears when an instance is active.' },
+    { t:'chg', txt:'Help, Report a bug, Discord and About moved into a single ⋯ menu.' },
+    { t:'fix', txt:'First mirror now respects the screen-off toggle and accepts interaction immediately.' },
+    { t:'fix', txt:'Removed the Close item from the tab right-click menu.' },
+  ]},
+  { ver:'v1.6.1', items:[
+    { t:'fix', txt:'Frozen hidden instances — background mirrors repaint on a light schedule; a focused tab repaints immediately.' },
+    { t:'fix', txt:'Stuck input after using the phone during startup — taps are ignored until the video stream is live.' },
+    { t:'fix', txt:'Settings dropdowns no longer close instantly when opened from the topbar.' },
+    { t:'fix', txt:'Theme picker no longer crashes when clicking the theme button.' },
+    { t:'chg', txt:'High-resolution stability — hardware-accelerated decoding is explicitly requested; decoder errors recover on the next keyframe.' },
+    { t:'chg', txt:'Selecting 2K/4K while instances run shows a heads-up that multiple high-res mirrors can overload the phone.' },
+  ]},
+  { ver:'v1.6.0', items:[
+    { t:'add', txt:'Theme system — 8 selectable color palettes; the choice persists and applies instantly everywhere.' },
+    { t:'add', txt:'New neutral logo and app icon.' },
+    { t:'chg', txt:'Cleaner topbar and full translations (EN, ES, PT, JA, DE, FR).' },
+    { t:'fix', txt:'Fixed the shortcuts panel crash and several missing translations.' },
+    { t:'chg', txt:'Default theme changed from Amber to Gray.' },
+  ]},
+  { ver:'v1.5.0', items:[
+    { t:'add', txt:'Layout Manager — save your open instances as a named layout and restore them all in one click.' },
+    { t:'add', txt:'Broadcast mode — send every click on the active mirror to all other instances of the same app.' },
+    { t:'chg', txt:'Button detection rewritten with template matching — accurate across every resolution.' },
+    { t:'fix', txt:'Keyboard shortcuts work immediately without clicking the mirror first.' },
+    { t:'fix', txt:'Consistent resolution scaling across instances of the same preset.' },
+  ]},
+  { ver:'v1.4.0', items:[
+    { t:'add', txt:'Auto-reconnect — a dropped mirror shows a 3-second countdown and reconnects automatically.' },
+    { t:'add', txt:'FPS counter — live per-tab FPS, toggleable in Settings.' },
+    { t:'add', txt:'In-app notifications (toasts) — stacked bottom-right, colored by type, auto-dismiss.' },
+  ]},
+  { ver:'v1.3.x', items:[
+    { t:'add', txt:'Shortcut Profiles — save an instance\u2019s zone layout and apply it to any instance in one click.' },
+    { t:'chg', txt:'Fullscreen top-bar peek now requires the mouse at the very top edge.' },
+  ]},
+  { ver:'v1.1.x', items:[
+    { t:'add', txt:'Multi-launch — select multiple apps across multiple devices and launch them all at once.' },
+    { t:'add', txt:'Silent background updates, with a live update check every 5 minutes.' },
+    { t:'fix', txt:'Clicking outside a panel now closes it; panels are protected while editing zones.' },
+  ]},
+  { ver:'v1.0.0', items:[
+    { t:'add', txt:'Multi-instance Android mirroring on isolated virtual displays.' },
+    { t:'add', txt:'Multi-device support — connect and mirror several devices at once.' },
+    { t:'add', txt:'Samsung Secure Folder support (no root).' },
+    { t:'add', txt:'Shortcuts (zones), tab nicknames, settings presets, and turn-off-screen while mirroring.' },
+  ]},
+];
+const CL_TAG = { add:'NEW', chg:'CHANGED', fix:'FIXED' };
+function renderChangelog(){
+  const body = document.getElementById('cl-body');
+  body.innerHTML = CHANGELOG.map((rel,idx)=>`
+    <div class="cl-rel">
+      <div class="cl-rel-head">
+        ${idx===0?`<span class="whats">What\u2019s new in</span>`:''}
+        <span class="v" style="font-size:${idx===0?'18':'15'}px">${rel.ver}</span>
+      </div>
+      ${rel.items.map(it=>`
+        <div class="cl-item">
+          <span class="cl-tag ${it.t}">${CL_TAG[it.t]||'CHANGED'}</span>
+          <span class="txt">${it.txt}</span>
+        </div>`).join('')}
+    </div>`).join('');
 }
+function openChangelog(){ renderChangelog(); document.getElementById('cl-backdrop').classList.add('open'); }
+function closeChangelog(){ document.getElementById('cl-backdrop').classList.remove('open'); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeChangelog(); });
 </script>
 </body>
 </html>
