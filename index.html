@@ -535,6 +535,35 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(
 
 // ── Changelog ──────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { ver:'v1.11.1', items:[
+    { t:'fix', txt:'Multi-launch no longer kills instances. Launching several at once could leave some dead with a timeout error, needing a manual restart \u2014 the launcher only looked sequential and was actually firing every launch in parallel, so they competed for the device\u2019s single adb channel and the later ones ran out of time. Launches are now genuinely one-at-a-time per device (different devices still launch in parallel).' },
+    { t:'fix', txt:'Locked devices no longer slip through multi-launch. Each instance used to probe the lock screen on its own, so batch launches raced each other and some started without prompting. Instances on the same device now share one fresh probe.' },
+    { t:'fix', txt:'Locked-device detection no longer misses devices that need unlocking. The old check inferred input from window focus, which could look fine while the lock screen silently dropped every tap \u2014 you\u2019d get video that ignored you, with no prompt.' },
+    { t:'add', txt:'\u201cUse device while locked\u201d toggle \u2014 in Settings and the launch dialog. Off by default. Turn it on for devices you know accept taps while locked and they\u2019ll launch without an unlock prompt. The warning next to it explains what happens if your device doesn\u2019t support it.' },
+    { t:'chg', txt:'Locked devices now ask you to unlock by default. Auto-detecting which devices accept locked input turned out not to be reliable \u2014 devices that accept taps and devices that drop them report identical state to Android, so the difference is invisible to us. Rather than guess wrong, Vortynix asks; use the toggle above to opt out per device.' },
+  ]},
+  { ver:'v1.11.0', items:[
+    { t:'add', txt:'Multi-launch with locked devices \u2014 launching several instances at once on a locked device shows a single unlock prompt per device; unlock once and every waiting instance for that device starts together.' },
+    { t:'fix', txt:'The \u201cunlock your device\u201d card now stays until the mirror is truly back up, so you no longer briefly see the previous frozen frame.' },
+    { t:'chg', txt:'Broadcast targets now list all live instances regardless of app, and each row shows the original app name.' },
+  ]},
+  { ver:'v1.10.0', items:[
+    { t:'add', txt:'Locked-device play — Vortynix works with the device locked. Devices that accept it launch straight through; devices that block input while locked show a one-time unlock prompt and work right after you unlock.' },
+    { t:'add', txt:'Battery indicator — see each connected device\u2019s battery level in the launch dialog and in View devices, with low-battery warnings at 15% and 5%.' },
+    { t:'fix', txt:'Audio now reliably plays on your PC for every device, including tablets (previously the sound only came out of the device speaker).' },
+    { t:'fix', txt:'Input no longer dies a few seconds after launch on devices whose screen dozes while locked — the panel is kept awake so taps keep landing.' },
+    { t:'fix', txt:'Input injection with audio enabled is now rock-solid — a socket-ordering race that could silently break clicks has been eliminated.' },
+  ]},
+  { ver:'v1.9.0', items:[
+    { t:'add', txt:'Pop-out windows — drag any instance out of the tab bar into its own movable window, great for spreading mirrors across monitors. Return it anytime, or close it to stop just that instance.' },
+    { t:'add', txt:'Window mode — a toggle (in Settings and the launch dialog) opens instances directly as separate windows; your choice is remembered.' },
+    { t:'add', txt:'Broadcast target picker — turning on Broadcast opens a wizard listing running instances so you can choose exactly which ones receive your clicks.' },
+    { t:'add', txt:'Shortcuts, in-game button detection and window controls now work inside pop-out windows too.' },
+    { t:'chg', txt:'Redesigned audio mixer sliders — smooth click-and-drag volume with a live fill indicator and a clear muted state.' },
+    { t:'fix', txt:'Audio mute is now respected reliably, and the mixer no longer lists devices incorrectly.' },
+    { t:'fix', txt:'Background instances stay live instead of freezing when unfocused.' },
+    { t:'fix', txt:'Persisted settings now apply on startup, instead of only after toggling them off and on.' },
+  ]},
   { ver:'v1.8.0', items:[
     { t:'add', txt:'Memberships — Vortynix is now available through a membership. Subscribe to get your license key and unlock every feature; courtesy keys stay valid for life.' },
     { t:'add', txt:'License details in About — see your plan at a glance: lifetime, next renewal date, or when access ends.' },
