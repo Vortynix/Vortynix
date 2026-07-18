@@ -535,6 +535,19 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(
 
 // ── Changelog ──────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { ver:'v1.11.2', items:[
+    { t:'fix', txt:'Audio no longer sounds doubled and distorted. Every instance was running several audio decoders at once \u2014 the launch created one, the stream\u2019s codec header created another, and the first was left alive, still decoding and still playing on its own timeline. What you heard was two or three copies of the same audio layered on top of each other. Only one decoder now exists per instance, and the wasted CPU goes back to the video.' },
+    { t:'fix', txt:'Audio no longer crackles or cuts out. Each chunk used to play the instant it finished decoding, so any hiccup in delivery left a gap (a click) or an overlap (distortion). Audio now plays on a proper timeline, where each chunk starts exactly where the last one ended.' },
+    { t:'fix', txt:'Settings dropdowns no longer snap shut when instances are running. The chat detector runs continuously in the background and kept pulling keyboard focus back to the mirror \u2014 including out of a dropdown you had just opened.' },
+    { t:'fix', txt:'The unlock prompt no longer flashes up and disappears when mirroring a locked device. The video stream and the lock-screen check were racing; the mirror won and painted over the prompt before the check had finished.' },
+    { t:'fix', txt:'Instances that need unlocking now respond to clicks after you unlock, and the \u201cturn off screen\u201d setting applies to them properly.' },
+    { t:'fix', txt:'Launching straight into window mode now opens the instance window reliably. It fired on a fixed timer that didn\u2019t wait for the mirror to be ready, so whether it worked came down to whether the stream happened to be fast enough that time.' },
+    { t:'fix', txt:'Licenses no longer lock you out on your own machine. The device fingerprint was rebuilt on every launch from whichever system probe answered first, and a slow probe (antivirus, a busy machine) meant a different answer \u2014 and a \u201cDevice mismatch\u201d you couldn\u2019t recover from. The fingerprint is now stable, and a license that can\u2019t be verified falls back to your remaining subscription days instead of locking the app.' },
+    { t:'add', txt:'System tray \u2014 minimise the main window while an instance is in window mode and Vortynix parks itself in the notification area. Double-click to bring it back, or right-click for your instance windows, launch, settings and devices.' },
+    { t:'add', txt:'Shortcuts on/off button in the top bar, for instances that have shortcuts bound. Turn zone shortcuts off when you want the keys to go straight to the device.' },
+    { t:'add', txt:'The changelog now opens by itself the first time you launch a new version.' },
+    { t:'chg', txt:'Hidden instances no longer repaint their canvas \u2014 they keep decoding (broadcast and in-game notifications work exactly as before), but painting a screen nobody is looking at was about three quarters of all the drawing work with four instances open.' },
+  ]},
   { ver:'v1.11.1', items:[
     { t:'fix', txt:'Multi-launch no longer kills instances. Launching several at once could leave some dead with a timeout error, needing a manual restart \u2014 the launcher only looked sequential and was actually firing every launch in parallel, so they competed for the device\u2019s single adb channel and the later ones ran out of time. Launches are now genuinely one-at-a-time per device (different devices still launch in parallel).' },
     { t:'fix', txt:'Locked devices no longer slip through multi-launch. Each instance used to probe the lock screen on its own, so batch launches raced each other and some started without prompting. Instances on the same device now share one fresh probe.' },
