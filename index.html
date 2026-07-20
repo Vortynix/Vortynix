@@ -535,6 +535,14 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(
 
 // ── Changelog ──────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { ver:'v1.11.8', items:[
+    { t:'fix', txt:'Copy and paste now works both ways between the PC and a mirrored device. Copy on the phone and it lands on your computer clipboard; press Ctrl+V over an instance and your PC clipboard is pasted into it.' },
+    { t:'fix', txt:'Device audio no longer doubles up with multiple instances. A device\u2019s sound was being played once per open instance of that device, so two instances meant everything sounded doubled and distorted. It now plays exactly once.' },
+    { t:'fix', txt:'You can now enable a record on more instances after starting it. Turning on "this instance" for a record no longer blocks enabling it on the others; the running record picks up newly enabled instances on its next pass.' },
+    { t:'new', txt:'Settings now explain themselves. A "?" next to each option shows a short, plain-language description on hover, and the five performance controls (resolution, FPS, bitrate, DPI, keyframe interval) also show how much each one affects performance.' },
+    { t:'chg', txt:'Troubleshooting moved to a button beside the Help title and now opens as a side panel, so you can read it next to the guide instead of replacing it.' },
+    { t:'chg', txt:'Further translation polish: the top-bar tooltips, the Layout Manager, and several labels that were still English are now translated across all six languages, the Japanese was simplified to read more naturally, and some awkward Spanish was fixed.' },
+  ]},
   { ver:'v1.11.7', items:[
     { t:'fix', txt:'Multi-launch is reliable again. Launching several instances on one device could fail with a server crash \u2014 the jar the server reads had been left in an unreadable state by an over-eager caching optimisation. The jar is now delivered fresh and verified for every instance, and the whole batch appears at once in a Starting state while each mirror comes up in turn.' },
     { t:'fix', txt:'Big performance improvement under load. With several mirrors open, using a heavy app alongside Vortynix could slow everything to a crawl, taps included. Video decoding now explicitly prefers your device\u2019s hardware decoder instead of silently falling back to software \u2014 four software decodes are what saturated the machine. Painting is also thinned out while the window is in the background, so Vortynix stops fighting whatever app you switched to for the GPU.' },
