@@ -535,6 +535,12 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(
 
 // ── Changelog ──────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { ver:'v1.11.9', items:[
+    { t:'fix', txt:'Ctrl+C now copies from an instance. Previously only the app\u2019s own "Copy" menu put text on your PC clipboard; pressing Ctrl+C did nothing. It now sends the copy to the device, so the selected text reaches your computer clipboard as expected.' },
+    { t:'chg', txt:'The Troubleshooting panel now points at what Vortynix actually offers \u2014 the restart button, View devices, auto-reconnect, the use-while-locked toggle and the audio mixer \u2014 instead of generic USB/ADB steps. It\u2019s also easier to read and the modal stays centered when it opens.' },
+    { t:'fix', txt:'Notifications no longer cut off their text. Longer messages now wrap to as many lines as they need instead of ending in "\u2026", so you always see the full message.' },
+    { t:'fix', txt:'Fixed the Troubleshooting text showing in the wrong language for some languages, and the panel\u2019s scrollbar now matches the current theme.' },
+  ]},
   { ver:'v1.11.8', items:[
     { t:'fix', txt:'Copy and paste now works both ways between the PC and a mirrored device. Copy on the phone and it lands on your computer clipboard; press Ctrl+V over an instance and your PC clipboard is pasted into it.' },
     { t:'fix', txt:'Device audio no longer doubles up with multiple instances. A device\u2019s sound was being played once per open instance of that device, so two instances meant everything sounded doubled and distorted. It now plays exactly once.' },
