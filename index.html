@@ -3,690 +3,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vortynix — mission control for Android</title>
+<title>Vortynix — run many Android instances at once</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHKklEQVR4nK2Ye4yUVxnGf+d8l5nZ2RlmL1AotwJWkFsRgRZJwYqtNVLSqrXBKtaY1As2NTVEa0yQpEUgQWmsNYWCUqq1tGnAxqgtxBQlpDS1UJZluQZXLtmy7Ozs7Oxcvu+c1z++2V2Iu8slfSbnj8mc8zzveW/nnFH0QwMWYMmyJxqPt7w3BxumlbIiIoobgFJKRLQSIbx51Jh/731zxxkRAXAAA9BLrAG7+P5vNJxsbvpJsVRYZq0ZfSOig0Er3el5/puZxhFrjhz4x6FeIxSs0rDaTp+7aE57W9v20FSmiLW96+zglNcFBSilFMpxCqlU3YrTze9uA7QC9Kx7H2y40HxofxhUJglSAeXR752PCgJiANdxXNMwfPSdLe/v3a9RyrafOPpkGAaTBFsBfBAFwkc8FOACoTGhk+1oe2bVqh2+WrLs0cZ3/rm72YRhIygBdLRA9Rt+w84YjEes0o4ePnzM593jTUfmWmvrqz9oAZRW0WQFWBCR6zZBAKVUFGXple3jERFLvpD7nBuaICMijohYQKEUYU8JCQ0igpuIoVyXavlcO5TCBgFhsYxSCuU6OPHYFTxiwzqtHcK+NVphiiUyUyexYOsa5qxfiZdOIaEBdR0+UAoJDV46xZz1K1mwdQ2ZqZMwxVLVu73TVOiKiEKiRBEjuIk4n1q3kroZk3HiPojw7o/WEmuoQ8JwcNHL9R1NJd/NrJ//gFu//RVMqUJi1HDefvBxxNhoMyKItUpDf55aa1ExDz+TptKVp+dsG2OXLqZx3kyCfDdofdVcR2uCfIHG229j7H2L6TnbRqUrj59Jo2Ie1tr+uUQdMPpqBe06lC920LxxG25NAhHBifvM/Nn30Z6LWBPNFYniqvtHnwkioBTTnvgWTjKOiMVNJGjeuI3yxQ6064C10TxAY/rNEWPxUklOvbST1p27idUPo5ztonHeTCYsW0KQy6O0RmlF2FMk6OomyBcIurqrOeRQ6cwx/sv3cNPCuZQvdRJrqOO/f97Dqe078VLJKASXQUf6/R8rgluT4PDa5ym2teMmYoT5AlNWPEzN2FGYSkDQU6Ru1hQ+vfkpFv5hA2MfuJuwWMIEFeIjhzP18W8SFoo48Rjl9izNG3+Pk4ghcqWWIGgwkTt6h7Vo36PQep6WZ1/CTdUSFkskbmpk5pPfpZLN0TB7Ggu3b2D0FxYxYv4nmf/caj62/AGKlz5k6mPLSY6/mbCniJ+u5fgLO+g8egonEY9C2KcjYPty4EqIMXjpWk7/8Q3aD3yAn0lT7sgx7v67GfmZ25n4tfvwMynK7VmCfDemp8jEh5cyZvEixn/1XoLOPH66lo7Dxzix5VX8TGrQCoqqQOT/BlpjKgEHV/8aqQQoRyNhyPQfP0p8eD2mXAatUVpjgxAnEWfGT7+H43lYY1CuQ9P6zQSFYlQ9A2lgB/ZArxfcVA0XDxzi1MtvEKsbRqWrm7pptxKrH4athHi1NSjfR8c83LhPZvJEgu4eYvUZWnft4dzufXjpJGLMYDJVA2TgqpbQ4KeSHPnlFnItp3GTCcQYEqNGcPLF1+k+c5agK8+Z1/6GKVewxqBjHuX2LEc2bsVxnSjWA/Lby0Mw2BDwXErtnTT96neRe4OAWEOGmlEj2L30O/xlwUOU2i6RHDsKW67gp2o5tvkVOptP4dQksNZEkgPwW6FaBUP0NglD/EyK/+x6i/N79hGrz1Du6GTCQ19k5MJ5JEY2MmXF16l0deOmknR80MKxF3bgZ1LYvsQbjN/iXqE/cDaACI7rcPCp52iYPR0nFqOSyzP1h49EzUmBhAbtOhxetwnTXcAblqrGfuhDrL8VD97dsdbi1CTINh3n2KY/4adrCQtFam8ZTf2sT1DJdRNryNC6azfn3voXXroW25d4Q3MPWoZXlIsINohC0bL5FToOt0Qi5QqmXMGJ+5TbszRt2IJ2HWx1zVV5raCrd7VrgKAcjenp4dDTv0WCEFCIiQ6bludfpvPoSdxkIjpsrg1KW+WEVZOGKodoR2HUIc/9fS8X3n6H+Ih6vFSSngsfcvLF1/FTtdjQXJWnt8SUUoGuGznuPZQuWBE1WMVekbfW4iRiNG3cyqX3mym1Zzn49G8o5/LgOdFersIhoFBaufHEPiUiqnHkuNdKxcKXUIQI7pCJK9HVLSyWcBMJdMyn3JHFS9YgVoZOegEURkS06/mtd3x2yWwFMHnGHTPOnz2134RBUikdAm5/XQ7EKCitEWMRa9GeV72sDDz3Mh4rIlY7jpvOND5y/kzLNkX1jTb6linLc7n2zTYM/UhBXVsmVe93V4WgBNFaaxK16WcvnW99TMQ6vSY7gJn48dsWZLMXfxFUSndaO2R3um4opXFd70QylVl7ofXEVhHb+zjtgwMYx/WYMHnmPV257F1iTR1KCTf4PO+FQBBP1u6bf9eSv766aV2Oy/4K+B/NmU9qd75ssQAAAABJRU5ErkJggg==">
-<meta name="description" content="A control deck for running many Android instances at once. Multi-instance mirroring, zone shortcuts, per-device audio and broadcast — from one cockpit.">
-<link rel="canonical" href="https://vortynix.app/">
+<meta name="description" content="Run many Android apps at once, each on its own virtual display, from one window. Multi-instance mirroring, zone shortcuts, per-device audio and broadcast — no root, no phone app.">
+<link rel="canonical" href="https://vortynix.github.io/Vortynix/">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://vortynix.app/">
-<meta property="og:title" content="Vortynix — mission control for Android">
-<meta property="og:description" content="Run many Android apps at once, each on its own virtual display, from one control deck. Multi-instance mirroring, shortcuts, audio and broadcast.">
-<!-- PLACEHOLDER: 1200x630 preview image, e.g. https://vortynix.app/assets/og.png -->
-<meta property="og:image" content="https://vortynix.app/assets/og.png">
-
+<meta property="og:url" content="https://vortynix.github.io/Vortynix/">
+<meta property="og:title" content="Vortynix — run many Android instances at once">
+<meta property="og:description" content="Run many Android apps at once, each on its own virtual display, from one window. Multi-instance mirroring, shortcuts, audio and broadcast.">
+<meta property="og:image" content="https://vortynix.github.io/Vortynix/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vortynix — mission control for Android">
-<meta name="twitter:description" content="Run many Android apps at once, each on its own virtual display, from one control deck.">
-<meta name="twitter:image" content="https://vortynix.app/assets/og.png">
+<meta name="twitter:title" content="Vortynix — run many Android instances at once">
+<meta name="twitter:description" content="Run many Android apps at once, each on its own virtual display, from one window.">
+<meta name="twitter:image" content="https://vortynix.github.io/Vortynix/assets/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --void:#060708;
-  --deck:#0b0d10;
-  --panel:#0f1216;
-  --panel2:#131820;
-  --edge:rgba(120,140,170,.10);
-  --edge2:rgba(120,140,170,.20);
-  --ink:#e8edf2;
-  --ink2:#8b97a6;
-  --ink3:#4a5563;
-  --steel:#9fb0c3;
-  --hud:#5ce0c8;
-  --hud-dim:rgba(92,224,200,.14);
-  --amber:#f5b44f;
-  --violet:#9d8bff;
-  --scan:rgba(92,224,200,.5);
-  --mono:'JetBrains Mono',monospace;
-  --grot:'Space Grotesk',system-ui,sans-serif;
+  --bg:#0a0b0d;
+  --surface:#111316;
+  --surface2:#161a1f;
+  --line:rgba(255,255,255,.07);
+  --line2:rgba(255,255,255,.12);
+  --ink:#eef1f4;
+  --ink2:#9aa4b0;
+  --ink3:#5c6672;
+  --mint:#5ce0c8;
+  --mint-soft:rgba(92,224,200,.10);
+  --grot:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --r:14px;
+  --maxw:1080px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--grot);background:var(--void);color:var(--ink);
-  line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  font-family:var(--grot);background:var(--bg);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
-.mono{font-family:var(--mono)}
 img,video{display:block;max-width:100%}
-::selection{background:var(--hud);color:#03110e}
+.mono{font-family:var(--mono)}
+::selection{background:var(--mint);color:#04120f}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
 
-.deck-bg{position:fixed;inset:0;z-index:-3;background:
-  radial-gradient(120% 80% at 50% -10%, #0d1319 0%, var(--void) 60%);}
-.deck-grid{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.5;
-  background-image:
-    linear-gradient(var(--edge) 1px,transparent 1px),
-    linear-gradient(90deg,var(--edge) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 90%);
-  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 90%);}
-.scanline{position:fixed;left:0;right:0;height:2px;z-index:-1;pointer-events:none;
-  background:linear-gradient(90deg,transparent,var(--scan),transparent);
-  opacity:.35;animation:sweep 9s linear infinite}
-@keyframes sweep{0%{top:-2%}100%{top:102%}}
-@media(prefers-reduced-motion:reduce){.scanline{display:none}}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
-.frame{max-width:1280px;margin:0 auto;padding:0 28px}
-
-.rail{
-  position:fixed;top:0;left:0;right:0;z-index:100;height:52px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;background:rgba(6,7,8,.72);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--edge);
-  font-family:var(--mono);font-size:12px;
+/* ── Nav ─────────────────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,11,13,.72);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
 }
-.rail-left{display:flex;align-items:center;gap:14px}
-.callsign{display:flex;align-items:center;gap:9px;font-family:var(--grot);font-weight:700;font-size:16px;letter-spacing:-.01em}
-.callsign .core{width:14px;height:14px;border-radius:3px;position:relative;
-  background:conic-gradient(from 45deg,#1b2530,#0c1218);border:1px solid var(--edge2)}
-.callsign .core::after{content:'';position:absolute;inset:0;margin:auto;width:5px;height:5px;border-radius:50%;
-  background:var(--hud);box-shadow:0 0 10px var(--hud)}
-.rail-stat{color:var(--ink3);display:none}
-.rail-stat b{color:var(--ink2);font-weight:500}
-.rail-stat .live{color:var(--hud)}
-@media(min-width:900px){.rail-stat{display:inline-flex;gap:6px;align-items:center}}
-.rail-right{display:flex;align-items:center;gap:18px}
-.rail-right a{color:var(--ink2);transition:color .2s}
-.rail-right a:hover{color:var(--ink)}
-.rail-cta{
-  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.02em;
-  padding:8px 15px;border:1px solid var(--hud);color:var(--hud);border-radius:7px;
-  transition:all .2s;background:var(--hud-dim)}
-.rail-cta:hover{background:var(--hud);color:#03110e}
-.blink{width:6px;height:6px;border-radius:50%;background:var(--hud);box-shadow:0 0 8px var(--hud);animation:blink 1.6s steps(1) infinite}
-@keyframes blink{50%{opacity:.25}}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.brand svg{width:22px;height:22px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--ink2);font-size:14px;transition:color .18s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  background:var(--mint);color:#04120f;padding:9px 16px;border-radius:9px;
+  font-weight:600;font-size:14px;transition:transform .18s,box-shadow .18s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px -8px var(--mint)}
+.nav-burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:4px}
 
-.cockpit{padding:112px 0 40px;position:relative}
-.cockpit-head{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;margin-bottom:34px}
-@media(max-width:880px){.cockpit-head{grid-template-columns:1fr;gap:22px;align-items:start}}
-.tag-line{font-family:var(--mono);font-size:12.5px;color:var(--hud);letter-spacing:.14em;margin-bottom:20px;display:flex;align-items:center;gap:9px}
-.tag-line::before{content:'';width:26px;height:1px;background:var(--hud)}
-h1{font-size:clamp(40px,6.4vw,82px);font-weight:700;line-height:.98;letter-spacing:-.04em}
-h1 em{font-style:normal;color:var(--ink3);display:block}
-h1 .sweep{
-  background:linear-gradient(100deg,var(--ink) 30%,var(--steel) 55%,var(--hud) 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero-side{padding-bottom:6px}
-.hero-side p{color:var(--ink2);font-size:16px;line-height:1.7;border-left:2px solid var(--edge2);padding-left:18px}
-.hero-side .actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+/* ── Hero ────────────────────────────────────────────────────── */
+.hero{padding:96px 0 72px;position:relative}
+.hero-grid{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 0%,transparent 75%);
+          mask-image:radial-gradient(70% 60% at 50% 30%,#000 0%,transparent 75%);
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mint);border:1px solid var(--line2);border-radius:100px;
+  padding:6px 14px;margin-bottom:28px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--mint);
+  box-shadow:0 0 0 0 var(--mint);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,224,200,.5)}70%{box-shadow:0 0 0 7px rgba(92,224,200,0)}100%{box-shadow:0 0 0 0 rgba(92,224,200,0)}}
+.hero h1{
+  font-size:clamp(38px,6.4vw,68px);line-height:1.04;letter-spacing:-.03em;
+  font-weight:600;max-width:15ch;margin-bottom:24px;
+}
+.hero h1 em{font-style:normal;color:var(--ink2)}
+.hero .lede{font-size:clamp(16px,2vw,19px);color:var(--ink2);max-width:56ch;margin-bottom:36px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .btn{
-  display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
-  font-size:13.5px;font-weight:600;padding:13px 20px;border-radius:9px;cursor:pointer;
-  transition:transform .16s,box-shadow .22s,background .2s,border-color .2s;border:1px solid transparent}
-.btn-go{background:var(--hud);color:#03110e;box-shadow:0 0 0 1px var(--hud),0 8px 30px -8px var(--hud)}
-.btn-go:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--hud),0 14px 40px -8px var(--hud)}
-.btn-sec{background:transparent;color:var(--ink);border-color:var(--edge2)}
-.btn-sec:hover{border-color:var(--steel);background:var(--panel)}
+  display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:11px;transition:transform .18s,box-shadow .18s,background .18s,border-color .18s;cursor:pointer;border:1px solid transparent;
+}
+.btn-primary{background:var(--mint);color:#04120f}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px -12px var(--mint)}
+.btn-ghost{background:transparent;border-color:var(--line2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--mint);color:var(--mint)}
 
-.viewport{
-  position:relative;border:1px solid var(--edge2);border-radius:16px;overflow:hidden;
-  background:var(--deck);box-shadow:0 40px 120px -40px #000, inset 0 0 60px rgba(92,224,200,.03)}
-.viewport-bar{display:flex;align-items:center;gap:14px;padding:11px 16px;border-bottom:1px solid var(--edge);
-  background:var(--void);font-family:var(--mono);font-size:12px;color:var(--ink3)}
-.viewport-bar .grp{display:flex;gap:6px}
-.viewport-bar .grp i{width:9px;height:9px;border-radius:2px;display:block;background:var(--edge2)}
-.viewport-bar .grp i.on{background:var(--hud);box-shadow:0 0 6px var(--hud)}
-.viewport-bar .path{color:var(--ink2)}
-.viewport-bar .right{margin-left:auto;display:flex;gap:16px}
-.viewport-bar .right span{display:flex;align-items:center;gap:5px}
-.corner{position:absolute;width:16px;height:16px;z-index:3;pointer-events:none;border-color:var(--hud);opacity:.7}
-.corner.tl{top:8px;left:8px;border-top:1.5px solid;border-left:1.5px solid}
-.corner.tr{top:8px;right:8px;border-top:1.5px solid;border-right:1.5px solid}
-.corner.bl{bottom:8px;left:8px;border-bottom:1.5px solid;border-left:1.5px solid}
-.corner.br{bottom:8px;right:8px;border-bottom:1.5px solid;border-right:1.5px solid}
-.ph{position:relative;background:
-    repeating-linear-gradient(-45deg,rgba(120,140,170,.03) 0 10px,transparent 10px 20px),var(--deck);
-  display:flex;align-items:center;justify-content:center;color:var(--ink3)}
-.ph-inner{text-align:center;padding:30px}
-.ph-eye{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--hud);margin-bottom:12px}
-.ph-eye::before{content:'▓ '}
-.ph-lbl{font-size:15px;color:var(--ink2);font-weight:600}
-.ph-hint{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-top:6px}
-.ph-169{aspect-ratio:16/9}
+.hero-shot{
+  margin-top:64px;border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;background:var(--surface);position:relative;
+  box-shadow:0 40px 120px -40px rgba(0,0,0,.8);
+}
+.shot-bar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface2)}
+.shot-dots{display:flex;gap:6px}
+.shot-dots i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
+.shot-path{font-family:var(--mono);font-size:12px;color:var(--ink3)}
+.shot-stat{margin-left:auto;display:flex;gap:18px;font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.hero-shot img,.hero-shot video{width:100%;object-fit:contain;background:var(--bg);display:block;aspect-ratio:16/9}
 
-.telemetry{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:1px;
-  background:var(--edge);border:1px solid var(--edge);border-top:none;
-  border-radius:0 0 16px 16px;overflow:hidden}
-@media(max-width:720px){.telemetry{grid-template-columns:repeat(2,1fr)}}
-.tele{background:var(--void);padding:16px 18px}
-.tele .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--ink3);margin-bottom:7px}
-.tele .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);display:flex;align-items:baseline;gap:5px}
-.tele .v small{font-size:12px;color:var(--hud);font-weight:500}
+/* ── Stats strip ─────────────────────────────────────────────── */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:72px}
+.stats-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  display:grid;grid-template-columns:repeat(5,1fr)}
+.stat{padding:28px 20px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat .n{font-size:26px;font-weight:600;letter-spacing:-.02em}
+.stat .n small{font-size:13px;color:var(--ink3);font-weight:400;margin-left:4px}
+.stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:6px}
 
-.section-mark{
-  display:flex;align-items:center;gap:16px;margin:100px 0 34px;font-family:var(--mono)}
-.section-mark .idx{font-size:12px;color:var(--hud);letter-spacing:.1em}
-.section-mark h2{font-family:var(--grot);font-size:clamp(24px,3.4vw,38px);font-weight:700;letter-spacing:-.03em}
-.section-mark .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--edge2),transparent)}
+/* ── Section shell ───────────────────────────────────────────── */
+section{padding:88px 0}
+.sec-head{margin-bottom:44px;max-width:52ch}
+.sec-head .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-bottom:14px}
+.sec-head h2{font-size:clamp(26px,3.6vw,38px);letter-spacing:-.02em;font-weight:600;line-height:1.1}
+.sec-head p{color:var(--ink2);font-size:16px;margin-top:14px}
 
-.instruments{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.inst{
-  background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:24px;
-  position:relative;overflow:hidden;transition:border-color .25s,transform .25s,background .25s}
-.inst:hover{border-color:var(--edge2);background:var(--panel2);transform:translateY(-3px)}
-.inst::before{content:attr(data-code);position:absolute;top:14px;right:16px;
-  font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.08em}
-.inst .ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--edge2);background:var(--deck);margin-bottom:16px;color:var(--hud)}
-.inst h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px}
-.inst p{font-size:14px;color:var(--ink2);line-height:1.6}
-.inst .status{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--ink3);display:flex;align-items:center;gap:7px}
-.inst .status .d{width:6px;height:6px;border-radius:50%;background:var(--hud);box-shadow:0 0 6px var(--hud)}
-.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}
-@media(max-width:900px){.c8,.c6,.c4,.c3{grid-column:span 6}}
-@media(max-width:560px){.c8,.c6,.c4,.c3,.c12{grid-column:span 12}}
+/* ── Features ────────────────────────────────────────────────── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{
+  border:1px solid var(--line);border-radius:var(--r);padding:26px;background:var(--surface);
+  transition:border-color .2s,transform .2s,background .2s;
+}
+.feat:hover{border-color:var(--line2);transform:translateY(-3px);background:var(--surface2)}
+.feat.span2{grid-column:span 2}
+.feat .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:var(--mint-soft);color:var(--mint);margin-bottom:18px}
+.feat h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.feat p{color:var(--ink2);font-size:14.5px}
+.feat .tag{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;
+  color:var(--ink3);letter-spacing:.04em}
 
-.inst-wide{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-@media(max-width:640px){.inst-wide{grid-template-columns:1fr}}
-.inst-wide .body h3{font-size:22px;margin-bottom:10px}
-.inst-wide .visual{border:1px solid var(--edge);border-radius:10px;overflow:hidden;background:var(--deck)}
+/* ── How it works ────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{border-top:2px solid var(--line2);padding-top:20px;position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);
+  font-family:var(--mono);font-size:13px;color:var(--mint);display:block;margin-bottom:12px}
+.step h4{font-size:16px;font-weight:600;margin-bottom:8px}
+.step p{color:var(--ink2);font-size:14px}
 
-.log{position:relative;padding-left:34px;margin-top:10px}
-.log::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--edge2)}
-.log-entry{position:relative;padding:0 0 30px}
-.log-entry:last-child{padding-bottom:0}
-.log-entry::before{content:'';position:absolute;left:-30px;top:4px;width:12px;height:12px;border-radius:50%;
-  background:var(--void);border:2px solid var(--hud);box-shadow:0 0 10px var(--hud-dim)}
-.log-entry .t{font-family:var(--mono);font-size:11.5px;color:var(--hud);letter-spacing:.06em;margin-bottom:6px}
-.log-entry h4{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:7px}
-.log-entry p{font-size:15px;color:var(--ink2);max-width:560px}
+/* ── Themes ──────────────────────────────────────────────────── */
+.palette{display:flex;flex-wrap:wrap;gap:12px}
+.swatch{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:100px;padding:7px 14px 7px 8px;transition:border-color .2s}
+.swatch:hover{border-color:var(--line2)}
+.swatch .dot{width:20px;height:20px;border-radius:50%}
+.swatch .nm{font-size:13px;color:var(--ink2)}
+.swatch .hx{font-family:var(--mono);font-size:11px;color:var(--ink3)}
 
-.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
-@media(max-width:880px){.split{grid-template-columns:1fr;gap:32px}}
-.split-visual{position:sticky;top:80px}
+/* ── Requirements / CTA ──────────────────────────────────────── */
+.get{border:1px solid var(--line);border-radius:20px;background:
+  radial-gradient(120% 140% at 0% 0%, rgba(92,224,200,.07), transparent 55%),var(--surface);
+  padding:48px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.get h2{font-size:clamp(26px,3.4vw,34px);letter-spacing:-.02em;font-weight:600;margin-bottom:14px}
+.get p{color:var(--ink2);font-size:16px;margin-bottom:26px;max-width:44ch}
+.reqs{display:flex;flex-direction:column;gap:12px}
+.req{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--ink2)}
+.req svg{flex:none;margin-top:2px;color:var(--mint)}
+.req b{color:var(--ink);font-weight:600}
 
-.bank{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.chip{
-  flex:1;min-width:120px;border:1px solid var(--edge);border-radius:11px;padding:14px;
-  background:var(--panel);transition:border-color .2s,transform .2s;cursor:default}
-.chip:hover{border-color:var(--edge2);transform:translateY(-3px)}
-.chip .sw{height:44px;border-radius:8px;margin-bottom:10px;border:1px solid var(--edge2)}
-.chip .nm{font-family:var(--mono);font-size:12px;color:var(--ink2)}
-.chip .hex{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:2px}
+/* ── Footer ──────────────────────────────────────────────────── */
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;margin-bottom:44px}
+.foot-brand .brand{margin-bottom:14px}
+.foot-brand p{color:var(--ink2);font-size:14px;max-width:34ch}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+.foot-col a{display:block;color:var(--ink2);font-size:14px;margin-bottom:11px;transition:color .18s;cursor:pointer}
+.foot-col a:hover{color:var(--mint)}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:13px;color:var(--ink3)}
 
+/* ── Modal (shared: changelog + legal) ───────────────────────── */
+.backdrop{position:fixed;inset:0;z-index:100;background:rgba(4,5,7,.72);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:24px}
+.backdrop.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--line2);border-radius:18px;
+  width:100%;max-width:720px;max-height:84vh;display:flex;flex-direction:column;overflow:hidden}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 26px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.modal-x{background:none;border:1px solid var(--line2);color:var(--ink2);width:34px;height:34px;
+  border-radius:9px;font-size:20px;line-height:1;cursor:pointer;transition:color .18s,border-color .18s}
+.modal-x:hover{color:var(--ink);border-color:var(--ink2)}
+.modal-body{padding:26px;overflow-y:auto}
 
-.launch{margin:110px 0 60px}
-
-/* ===== changelog modal ===== */
-.cl-backdrop{position:fixed;inset:0;z-index:200;background:rgba(3,5,7,.78);backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
-.cl-backdrop.open{display:flex}
-.cl-modal{width:600px;max-width:100%;max-height:82vh;display:flex;flex-direction:column;
-  background:var(--panel);border:1px solid var(--edge2);border-radius:18px;overflow:hidden;
-  box-shadow:0 40px 120px -30px #000,inset 0 0 60px rgba(92,224,200,.03)}
-.cl-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;
-  border-bottom:1px solid var(--edge);background:var(--void)}
-.cl-head .t{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:13px;
-  font-weight:600;color:var(--hud);letter-spacing:.1em;text-transform:uppercase}
-.cl-head .t .core{width:13px;height:13px;border-radius:3px;position:relative;
-  background:conic-gradient(from 45deg,#1b2530,#0c1218);border:1px solid var(--edge2)}
-.cl-head .t .core::after{content:'';position:absolute;inset:0;margin:auto;width:4px;height:4px;border-radius:50%;
-  background:var(--hud);box-shadow:0 0 8px var(--hud)}
-.cl-x{background:none;border:1px solid var(--edge2);color:var(--ink2);width:30px;height:30px;border-radius:8px;
-  cursor:pointer;font-size:18px;line-height:1;transition:all .2s}
-.cl-x:hover{color:var(--ink);border-color:var(--steel);background:var(--panel2)}
-.cl-body{padding:22px;overflow-y:auto}
-.cl-rel{margin-bottom:26px}
+/* changelog */
+.cl-rel{margin-bottom:32px}
 .cl-rel:last-child{margin-bottom:0}
-.cl-rel-head{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--edge2);
-  display:flex;align-items:baseline;gap:10px}
-.cl-rel-head .v{font-family:var(--grot);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
-.cl-rel-head .whats{font-family:var(--mono);font-size:11px;color:var(--hud);letter-spacing:.1em;text-transform:uppercase}
-.cl-item{display:flex;align-items:flex-start;gap:11px;margin-bottom:11px}
-.cl-tag{flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.04em;
-  padding:3px 8px;border-radius:5px;min-width:60px;text-align:center;margin-top:1px}
-.cl-tag.add{color:var(--hud);background:var(--hud-dim)}
-.cl-tag.chg{color:#9d8bff;background:rgba(157,139,255,.12)}
-.cl-tag.fix{color:var(--amber);background:rgba(245,180,79,.12)}
-.cl-item span.txt{font-size:13.5px;color:var(--ink2);line-height:1.55}
-.launch-panel{
-  border:1px solid var(--edge2);border-radius:20px;overflow:hidden;background:var(--panel);position:relative}
-.launch-panel::before{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(80% 120% at 50% -20%,var(--hud-dim),transparent 60%)}
-.launch-grid{display:grid;grid-template-columns:1.3fr 1fr;position:relative}
-@media(max-width:820px){.launch-grid{grid-template-columns:1fr}}
-.launch-main{padding:52px 44px;border-right:1px solid var(--edge)}
-@media(max-width:820px){.launch-main{border-right:none;border-bottom:1px solid var(--edge)}}
-.launch-main .lead{font-family:var(--mono);font-size:12px;color:var(--hud);letter-spacing:.14em;margin-bottom:18px}
-.launch-main h2{font-size:clamp(30px,4.4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px}
-.launch-main p{color:var(--ink2);font-size:16px;max-width:440px;margin-bottom:28px}
-.launch-side{padding:52px 40px;display:flex;flex-direction:column;justify-content:center;gap:18px}
-.spec{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;color:var(--ink2)}
-.spec .b{width:22px;height:22px;border-radius:6px;border:1px solid var(--edge2);display:flex;align-items:center;justify-content:center;color:var(--hud);flex-shrink:0}
-.spec b{color:var(--ink);font-weight:500}
+.cl-rel-head{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;
+  padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cl-rel-head .whats{color:var(--ink3);font-size:13px}
+.cl-rel-head .v{font-family:var(--mono);font-weight:500;color:var(--ink)}
+.cl-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.cl-tag{flex:none;font-family:var(--mono);font-size:10px;letter-spacing:.06em;font-weight:500;
+  padding:3px 8px;border-radius:6px;margin-top:2px}
+.cl-tag.add{background:rgba(92,224,200,.12);color:var(--mint)}
+.cl-tag.fix{background:rgba(245,180,79,.12);color:#f5b44f}
+.cl-tag.chg{background:rgba(157,139,255,.12);color:#9d8bff}
+.cl-item .txt{font-size:14px;color:var(--ink2);line-height:1.6}
 
-footer{border-top:1px solid var(--edge);padding:44px 0 34px;font-family:var(--mono)}
-.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:32px}
-.foot-a .callsign{font-family:var(--grot);margin-bottom:12px}
-.foot-a p{font-size:12.5px;color:var(--ink3);max-width:280px;line-height:1.7}
-.foot-cols{display:flex;gap:56px;flex-wrap:wrap}
-.foot-col h5{font-size:11px;letter-spacing:.12em;color:var(--ink2);margin-bottom:14px}
-.foot-col a{display:block;font-size:12.5px;color:var(--ink3);margin-bottom:11px;transition:color .2s}
-.foot-col a:hover{color:var(--hud)}
-.foot-line{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
-  padding-top:24px;border-top:1px solid var(--edge);font-size:11.5px;color:var(--ink3)}
-.foot-line .sys{display:flex;align-items:center;gap:8px}
-.foot-line .sys .blink{width:5px;height:5px}
+/* legal */
+.legal h4{font-size:15px;font-weight:600;color:var(--ink);margin:24px 0 8px}
+.legal h4:first-child{margin-top:0}
+.legal p{font-size:14px;color:var(--ink2);margin-bottom:12px}
+.legal ul{margin:0 0 12px 20px}
+.legal li{font-size:14px;color:var(--ink2);margin-bottom:7px}
+.legal .updated{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-bottom:20px}
+.legal a{color:var(--mint)}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+/* ── Reveal on scroll ────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .eyebrow .dot{animation:none}
+  html{scroll-behavior:auto}
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media(max-width:860px){
+  .feat-grid,.steps{grid-template-columns:repeat(2,1fr)}
+  .feat.span2{grid-column:span 2}
+  .stats-in{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(odd){border-left:0}
+  .stat:nth-child(3),.stat:nth-child(5){border-top:1px solid var(--line)}
+  .stat:nth-child(4){border-top:1px solid var(--line)}
+  .get{grid-template-columns:1fr;padding:34px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:span 2}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .nav-links.show{display:flex;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 0}
+  .nav-links.show a{padding:12px 24px}
+  .nav-burger{display:block}
+  .feat-grid,.steps{grid-template-columns:1fr}
+  .feat.span2{grid-column:span 1}
+  .stats-in{grid-template-columns:1fr 1fr}
+  section{padding:64px 0}
+  .hero{padding:64px 0 48px}
+}
 </style>
 </head>
 <body>
-<div class="deck-bg"></div>
-<div class="deck-grid"></div>
-<div class="scanline"></div>
 
-<div class="rail">
-  <div class="rail-left">
-    <a href="#top" class="callsign"><svg width="20" height="20" viewBox="0 0 120 120" fill="none" style="vertical-align:middle;margin-right:2px"><g transform="translate(60,60)" stroke="var(--hud)" fill="var(--hud)"><path d="M -38 -14 A 42 42 0 0 1 38 -14" fill="none" stroke-width="5" opacity=".45" stroke-linecap="round"/><path d="M -34 -22 L 0 34 L 34 -22" fill="none" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><circle r="10"/><circle cx="-38" cy="-14" r="6"/><circle cx="38" cy="-14" r="6"/></g></svg>Vortynix</a>
-    <span class="rail-stat"><span class="blink"></span><b>SYS</b> <span class="live">nominal</span></span>
-  </div>
-  <div class="rail-right">
-    <a href="#instruments">Instruments</a>
-    <a href="#sequence">Sequence</a>
-    <a href="#" onclick="openChangelog();return false">Changelog</a>
-    <a href="#themes">Themes</a>
-    <a href="https://www.patreon.com/cw/Vortynix" class="rail-cta">GO TO PATREON ↗</a>
-  </div>
-</div>
-
-<section class="cockpit frame" id="top">
-  <div class="cockpit-head">
-    <div class="reveal">
-      <div class="tag-line">MISSION CONTROL FOR ANDROID</div>
-      <h1><span class="sweep">Fly a dozen</span><br><span class="sweep">instances</span><em>from one deck.</em></h1>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 120 120" fill="none"><g transform="translate(60,60)" stroke="var(--mint)" fill="var(--mint)"><path d="M -38 -14 A 42 42 0 0 1 38 -14" fill="none" stroke-width="5" opacity=".45" stroke-linecap="round"/><path d="M -34 -22 L 0 34 L 34 -22" fill="none" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><circle r="10"/><circle cx="-38" cy="-14" r="6"/><circle cx="38" cy="-14" r="6"/></g></svg>
+      Vortynix
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#themes">Themes</a>
+      <a href="#" onclick="openChangelog();return false">Changelog</a>
+      <a href="https://www.patreon.com/cw/Vortynix" class="nav-cta">Get Vortynix</a>
     </div>
-    <div class="hero-side reveal">
-      <p>Vortynix is the control deck for running many Android apps at once — each on its own virtual display, all wired into a single window you actually pilot.</p>
-      <div class="actions">
-        <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-go">↗ GO TO PATREON</a>
-        <a href="#sequence" class="btn btn-sec">▶ RUN DEMO</a>
+    <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('show')" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────── -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="dot"></span> Multi-instance Android, one window</div>
+    <h1 class="reveal">Run a dozen Android apps at once. <em>From one window.</em></h1>
+    <p class="lede reveal">Vortynix mirrors many Android instances side by side — each on its own isolated virtual display — so you can pilot a whole fleet of accounts without juggling windows. No root, no app on the phone.</p>
+    <div class="cta-row reveal">
+      <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-primary">Get Vortynix on Patreon →</a>
+      <a href="#how" class="btn btn-ghost">See how it works</a>
+    </div>
+
+    <div class="hero-shot reveal">
+      <div class="shot-bar">
+        <span class="shot-dots"><i></i><i></i><i></i></span>
+        <span class="shot-path">vortynix · 4 instances live</span>
+        <span class="shot-stat"><span>4 ACTIVE</span><span>60 FPS</span><span>2 DEVICES</span></span>
+      </div>
+      <img src="assets/hero.png" alt="Vortynix running multiple Android instances side by side">
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stats-in">
+      <div class="stat reveal"><div class="n">∞ <small>instances</small></div><div class="l">No cap</div></div>
+      <div class="stat reveal"><div class="n">Multi <small>device</small></div><div class="l">USB / Wi-Fi</div></div>
+      <div class="stat reveal"><div class="n">8 <small>themes</small></div><div class="l">Palettes</div></div>
+      <div class="stat reveal"><div class="n">6 <small>langs</small></div><div class="l">Localized</div></div>
+      <div class="stat reveal"><div class="n">0 <small>root</small></div><div class="l">Required</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Features ───────────────────────────────────────────── -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">What it does</div>
+      <h2>Everything you need to run many accounts at once</h2>
+      <p>Built for power users who work across a lot of instances — multi-account games, testing, automation.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat span2 reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>Multi-instance mirroring</h3>
+        <p>Every app runs in its own tab on its own isolated virtual display. Switch instantly — no window juggling, no cross-talk between instances.</p>
+        <span class="tag">isolated displays · instant switch</span>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/></svg></div>
+        <h3>Multi-device</h3>
+        <p>Connect and mirror several Android devices at once, all from one window.</p>
+        <span class="tag">parallel devices</span>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/></svg></div>
+        <h3>Zone shortcuts</h3>
+        <p>Bind keyboard keys to tap positions on the mirror — shared across every instance of the same app.</p>
+        <span class="tag">key → tap mapping</span>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg></div>
+        <h3>Broadcast clicks</h3>
+        <p>Fire one click to every instance of the same app at once. Built for repetitive multi-account work.</p>
+        <span class="tag">one-to-many input</span>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg></div>
+        <h3>Per-device audio</h3>
+        <p>Route device sound to your PC with a per-device mixer for volume and mute. <span class="mono" style="color:var(--ink3);font-size:12px">Android 13+</span></p>
+        <span class="tag">per-device mixer</span>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Secure Folder</h3>
+        <p>Mirror apps inside Samsung Secure Folder — no root, no workarounds. Keep accounts truly separate.</p>
+        <span class="tag">no root required</span>
       </div>
     </div>
-  </div>
 
-  <div class="viewport reveal">
-    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-    <div class="viewport-bar">
-      <span class="grp"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
-      <span class="path">deck://instances/live</span>
-      <span class="right">
-        <span><span class="blink"></span> 4 ACTIVE</span>
-        <span>60 FPS</span>
-        <span>2 DEVICES</span>
-      </span>
-    </div>
-    <img src="assets/hero.png" alt="Vortynix running multiple instances" class="ph-169" style="width:100%;object-fit:contain;background:var(--deck);display:block">
-  </div>
-
-  <div class="telemetry reveal">
-    <div class="tele"><div class="k">INSTANCES</div><div class="v">∞<small>limit</small></div></div>
-    <div class="tele"><div class="k">DEVICES</div><div class="v">MULTI<small>usb / wifi</small></div></div>
-    <div class="tele"><div class="k">THEMES</div><div class="v">08<small>palettes</small></div></div>
-    <div class="tele"><div class="k">LOCALES</div><div class="v">06<small>langs</small></div></div>
-    <div class="tele"><div class="k">ROOT</div><div class="v">00<small>required</small></div></div>
-  </div>
-</section>
-
-<section class="frame" id="instruments">
-  <div class="section-mark reveal">
-    <span class="idx">[ 01 ]</span>
-    <h2>Instrument panel</h2>
-    <span class="rule"></span>
-  </div>
-
-  <div class="instruments">
-    <div class="inst c8 reveal" data-code="INST·MULTI">
-      <div class="inst-wide">
-        <div class="body">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-          <h3>Multi-instance mirroring</h3>
-          <p>Every app runs in its own tab on its own isolated virtual display. Switch instantly — no window juggling, no cross-talk between instances.</p>
-          <div class="status"><span class="d"></span> isolated displays · instant switch</div>
-        </div>
-        <div class="visual">
-          <!-- PLACEHOLDER -->
-          <img src="assets/tabs.png" alt="Multiple tabs in Vortynix" class="ph-169" style="width:100%;object-fit:contain;background:var(--deck);display:block">
-        </div>
+    <div class="feat-grid" style="margin-top:16px">
+      <div class="feat reveal">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M20 7V5a2 2 0 0 0-2-2h-2M20 17v2a2 2 0 0 1-2 2h-2"/></svg></div>
+        <h3>Quality presets</h3>
+        <p>Ultra → Eco, or fully custom resolution, FPS, bitrate and DPI.</p>
       </div>
-    </div>
-
-    <div class="inst c4 reveal" data-code="INST·DEV">
-      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div>
-      <h3>Multi-device</h3>
-      <p>Connect and mirror several Android devices simultaneously, all from one deck.</p>
-      <div class="status"><span class="d"></span> parallel devices</div>
-    </div>
-
-    <div class="inst c4 reveal" data-code="INST·ZONE">
-      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/></svg></div>
-      <h3>Zone shortcuts</h3>
-      <p>Bind keyboard keys to tap positions on the mirror — shared across every instance of the same app.</p>
-      <div class="status"><span class="d"></span> key → tap mapping</div>
-    </div>
-
-    <div class="inst c4 reveal" data-code="INST·CAST">
-      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg></div>
-      <h3>Broadcast clicks</h3>
-      <p>Fire one click to every instance of the same app at once. Built for repetitive multi-account work.</p>
-      <div class="status"><span class="d"></span> one-to-many input</div>
-    </div>
-
-    <div class="inst c4 reveal" data-code="INST·AUD">
-      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg></div>
-      <h3>Per-device audio</h3>
-      <p>Route device sound to your PC with a per-device mixer for volume and mute. <span class="mono" style="color:var(--ink3);font-size:12px">Android 13+</span></p>
-      <div class="status"><span class="d"></span> mixer online</div>
-    </div>
-
-    <div class="inst c4 reveal" data-code="INST·VAULT">
-      <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
-      <h3>Secure Folder</h3>
-      <p>Mirror apps inside Samsung Secure Folder — no root, no workarounds. Keep accounts truly separate.</p>
-      <div class="status"><span class="d"></span> no root required</div>
-    </div>
-
-    <div class="inst c3 reveal" data-code="U·01"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M20 7V5a2 2 0 0 0-2-2h-2M20 17v2a2 2 0 0 1-2 2h-2"/></svg></div><h3>Quality presets</h3><p>Ultra→Eco, or fully custom resolution, FPS, bitrate and DPI.</p></div>
-    <div class="inst c3 reveal" data-code="U·02"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg></div><h3>Auto-reconnect</h3><p>Dropped link? A countdown restores the mirror on its own.</p></div>
-    <div class="inst c3 reveal" data-code="U·03"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div><h3>Tab nicknames</h3><p>Rename any instance so you always know which account you're on.</p></div>
-    <div class="inst c3 reveal" data-code="U·04"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Screen-off mirror</h3><p>Keep the phone panel dark while you mirror to save battery.</p></div>
-  </div>
-</section>
-
-<section class="frame" id="sequence">
-  <div class="section-mark reveal">
-    <span class="idx">[ 02 ]</span>
-    <h2>Launch sequence</h2>
-    <span class="rule"></span>
-  </div>
-
-  <div class="split">
-    <div class="reveal">
-      <div class="log">
-        <div class="log-entry">
-          <div class="t">T-00 · CONNECT</div>
-          <h4>Wire up a device</h4>
-          <p>Enable USB debugging, plug in over USB or pair over Wi-Fi. Vortynix detects it instantly — no app to install on the phone.</p>
-        </div>
-        <div class="log-entry">
-          <div class="t">T-01 · LAUNCH</div>
-          <h4>Spin up instances</h4>
-          <p>Pick apps across every connected device and open them. Each one lands in its own tab on its own virtual display.</p>
-        </div>
-        <div class="log-entry">
-          <div class="t">T-02 · ARM</div>
-          <h4>Wire your controls</h4>
-          <p>Map zone shortcuts, set up broadcast, balance audio per device, and save layouts you can restore in one click.</p>
-        </div>
-        <div class="log-entry">
-          <div class="t">T-03 · PILOT</div>
-          <h4>Fly the whole fleet</h4>
-          <p>Run everything from one deck — switch, control, and automate a dozen instances without ever leaving the window.</p>
-        </div>
+      <div class="feat reveal">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg></div>
+        <h3>Auto-reconnect</h3>
+        <p>Dropped link? A countdown restores the mirror on its own.</p>
       </div>
-    </div>
-    <div class="split-visual reveal">
-      <div class="viewport">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="viewport-bar">
-          <span class="grp"><i class="on"></i><i class="on"></i><i></i><i></i></span>
-          <span class="path">deck://sequence/replay</span>
-          <span class="right"><span><span class="blink"></span> REC</span></span>
-        </div>
-        <!-- PLACEHOLDER -->
-        <video src="assets/sequence.mp4" class="ph-169" autoplay muted loop playsinline style="width:100%;object-fit:contain;background:var(--deck);display:block"></video>
+      <div class="feat reveal">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+        <h3>Screen-off mirror</h3>
+        <p>Keep the phone panel dark while you mirror to save battery.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="frame" id="themes">
-  <div class="section-mark reveal">
-    <span class="idx">[ 03 ]</span>
-    <h2>Deck palettes</h2>
-    <span class="rule"></span>
-  </div>
-  <div class="bank reveal">
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#94a3b8,#20262e)"></div><div class="nm">gray</div><div class="hex">#94A3B8</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#e5e5e5,#101010)"></div><div class="nm">black</div><div class="hex">#E5E5E5</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#f5b44f,#332412)"></div><div class="nm">amber</div><div class="hex">#F5B44F</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#22d3ee,#082a30)"></div><div class="nm">cyan</div><div class="hex">#22D3EE</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#8b7bff,#1a1636)"></div><div class="nm">violet</div><div class="hex">#8B7BFF</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#f65959,#331212)"></div><div class="nm">red</div><div class="hex">#F65959</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#f472b6,#331226)"></div><div class="nm">pink</div><div class="hex">#F472B6</div></div>
-    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#a3e635,#1a2808)"></div><div class="nm">lime</div><div class="hex">#A3E635</div></div>
+<!-- ── How it works ───────────────────────────────────────── -->
+<section id="how" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Getting started</div>
+      <h2>From plugged-in to piloting in four steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h4>Connect a device</h4><p>Enable USB debugging, plug in over USB or pair over Wi-Fi. Vortynix detects it instantly — nothing to install on the phone.</p></div>
+      <div class="step reveal"><h4>Spin up instances</h4><p>Pick apps across every connected device and open them. Each lands in its own tab on its own virtual display.</p></div>
+      <div class="step reveal"><h4>Wire your controls</h4><p>Map zone shortcuts, set up broadcast, balance audio per device, and save layouts you can restore in one click.</p></div>
+      <div class="step reveal"><h4>Run the fleet</h4><p>Switch, control and automate a dozen instances from one window — without ever leaving it.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="frame launch" id="launch">
-  <div class="launch-panel reveal">
-    <div class="launch-grid">
-      <div class="launch-main">
-        <div class="lead">▓ CLEARED FOR LAUNCH</div>
+<!-- ── Themes ─────────────────────────────────────────────── -->
+<section id="themes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Make it yours</div>
+      <h2>Eight built-in themes</h2>
+      <p>Set the accent that fits your setup. The default mint carries through the whole app.</p>
+    </div>
+    <div class="palette reveal">
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#5ce0c8,#0c2a26)"></span><span class="nm">mint</span><span class="hx">#5CE0C8</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#94a3b8,#20262e)"></span><span class="nm">gray</span><span class="hx">#94A3B8</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#e5e5e5,#101010)"></span><span class="nm">mono</span><span class="hx">#E5E5E5</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#f5b44f,#332412)"></span><span class="nm">amber</span><span class="hx">#F5B44F</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#22d3ee,#082a30)"></span><span class="nm">cyan</span><span class="hx">#22D3EE</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#8b7bff,#1a1636)"></span><span class="nm">violet</span><span class="hx">#8B7BFF</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#f65959,#331212)"></span><span class="nm">red</span><span class="hx">#F65959</span></div>
+      <div class="swatch"><span class="dot" style="background:linear-gradient(135deg,#f472b6,#331226)"></span><span class="nm">pink</span><span class="hx">#F472B6</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Get it ─────────────────────────────────────────────── -->
+<section id="get">
+  <div class="wrap">
+    <div class="get reveal">
+      <div>
         <h2>Take the deck.</h2>
-        <p>Subscribe on Patreon to get your license key and your member role. Start piloting your instances in minutes.</p>
-        <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-go">↗ GO TO PATREON</a>
-        </div>
+        <p>Subscribe on Patreon to get your license key and member role. Start piloting your instances in minutes.</p>
+        <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-primary">Get Vortynix on Patreon →</a>
       </div>
-      <div class="launch-side">
-        <div class="spec"><span class="b"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg></span><b>Windows 10 / 11</b> · 64-bit</div>
-        <div class="spec"><span class="b">▸</span>Android <b>5.0+</b> · USB debugging</div>
-        <div class="spec"><span class="b">▸</span>Virtual displays <b>Android 10+</b></div>
-        <div class="spec"><span class="b">▸</span>Audio <b>Android 13+</b></div>
-        <div class="spec"><span class="b">✓</span>No root, no device app</div>
+      <div class="reqs">
+        <div class="req"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg><span><b>Windows 10 / 11</b> · 64-bit</span></div>
+        <div class="req"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Android <b>5.0+</b> · USB debugging</span></div>
+        <div class="req"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Virtual displays · <b>Android 10+</b></span></div>
+        <div class="req"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Audio · <b>Android 13+</b></span></div>
+        <div class="req"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span><b>No root</b>, no device app</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="frame">
-  <div class="foot-grid">
-    <div class="foot-a">
-      <a href="#top" class="callsign"><svg width="20" height="20" viewBox="0 0 120 120" fill="none" style="vertical-align:middle;margin-right:2px"><g transform="translate(60,60)" stroke="var(--hud)" fill="var(--hud)"><path d="M -38 -14 A 42 42 0 0 1 38 -14" fill="none" stroke-width="5" opacity=".45" stroke-linecap="round"/><path d="M -34 -22 L 0 34 L 34 -22" fill="none" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><circle r="10"/><circle cx="-38" cy="-14" r="6"/><circle cx="38" cy="-14" r="6"/></g></svg>Vortynix</a>
-      <p>Mission control for Android — multi-instance mirroring for Windows, built for power users.</p>
-    </div>
-    <div class="foot-cols">
-      <div class="foot-col">
-        <h5>DECK</h5>
-        <a href="#instruments">Instruments</a>
-        <a href="#sequence">Sequence</a>
-        <a href="#themes">Palettes</a>
-        <a href="https://www.patreon.com/cw/Vortynix">Get Vortynix</a>
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <svg viewBox="0 0 120 120" fill="none"><g transform="translate(60,60)" stroke="var(--mint)" fill="var(--mint)"><path d="M -38 -14 A 42 42 0 0 1 38 -14" fill="none" stroke-width="5" opacity=".45" stroke-linecap="round"/><path d="M -34 -22 L 0 34 L 34 -22" fill="none" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/><circle r="10"/><circle cx="-38" cy="-14" r="6"/><circle cx="38" cy="-14" r="6"/></g></svg>
+          Vortynix
+        </a>
+        <p>Multi-instance Android mirroring for Windows, built for power users.</p>
       </div>
       <div class="foot-col">
-        <h5>SIGNAL</h5>
-        <a href="#" onclick="openChangelog();return false">Changelog</a>
+        <h5>Product</h5>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#themes">Themes</a>
+        <a onclick="openChangelog()">Changelog</a>
+      </div>
+      <div class="foot-col">
+        <h5>Community</h5>
+        <a href="https://www.patreon.com/cw/Vortynix">Patreon</a>
+        <a href="https://discord.gg/KZHeDJzMgg">Discord</a>
         <a href="https://discord.gg/KZHeDJzMgg">Report a bug</a>
       </div>
       <div class="foot-col">
-        <h5>CREW</h5>
-        <a href="https://discord.gg/KZHeDJzMgg">Discord</a>
-        <a href="https://www.patreon.com/cw/Vortynix">Patreon</a>
+        <h5>Legal</h5>
+        <a href="#terms-of-services">Terms of Service</a>
+        <a href="#privacy-policy">Privacy Policy</a>
       </div>
     </div>
-  </div>
-  <div class="foot-line">
-    <span>© 2026 xDarkHidari - xDarkMoonlight · all rights reserved</span>
-    <span class="sys"><span class="blink"></span> ALL SYSTEMS NOMINAL</span>
+    <div class="foot-bot">
+      <span>© 2026 xDarkHidari · Aeonxy. All rights reserved.</span>
+      <span>Vortynix is not affiliated with Google or any device manufacturer.</span>
+    </div>
   </div>
 </footer>
 
-<!-- Changelog modal -->
-<div class="cl-backdrop" id="cl-backdrop" onclick="if(event.target===this)closeChangelog()">
-  <div class="cl-modal">
-    <div class="cl-head">
-      <span class="t"><span class="core"></span>Changelog</span>
-      <button class="cl-x" onclick="closeChangelog()" aria-label="Close">×</button>
+<!-- ── Changelog modal ────────────────────────────────────── -->
+<div class="backdrop" id="cl-backdrop" onclick="if(event.target===this)closeChangelog()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Changelog">
+    <div class="modal-head">
+      <h3>Changelog</h3>
+      <button class="modal-x" onclick="closeChangelog()" aria-label="Close">×</button>
     </div>
-    <div class="cl-body" id="cl-body"></div>
+    <div class="modal-body"><div id="cl-body"></div></div>
+  </div>
+</div>
+
+<!-- ── Legal modal ────────────────────────────────────────── -->
+<div class="backdrop" id="legal-backdrop" onclick="if(event.target===this)closeLegal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Legal">
+    <div class="modal-head">
+      <h3 id="legal-title">Terms of Service</h3>
+      <button class="modal-x" onclick="closeLegal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body"><div id="legal-body" class="legal"></div></div>
   </div>
 </div>
 
 <script>
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%5,4)*0.05)+'s';io.observe(el);});
-
-// ── Changelog ──────────────────────────────────────────────────────────────
+/* ── Changelog data ─────────────────────────────────────── */
 const CHANGELOG = [
-  { ver:'v1.11.9', items:[
-    { t:'fix', txt:'Ctrl+C now copies from an instance. Previously only the app\u2019s own "Copy" menu put text on your PC clipboard; pressing Ctrl+C did nothing. It now sends the copy to the device, so the selected text reaches your computer clipboard as expected.' },
-    { t:'chg', txt:'The Troubleshooting panel now points at what Vortynix actually offers \u2014 the restart button, View devices, auto-reconnect, the use-while-locked toggle and the audio mixer \u2014 instead of generic USB/ADB steps. It\u2019s also easier to read and the modal stays centered when it opens.' },
-    { t:'fix', txt:'Notifications no longer cut off their text. Longer messages now wrap to as many lines as they need instead of ending in "\u2026", so you always see the full message.' },
-    { t:'fix', txt:'Fixed the Troubleshooting text showing in the wrong language for some languages, and the panel\u2019s scrollbar now matches the current theme.' },
+  { ver:'v1.12.4', items:[
+    { t:'fix', txt:'Fixed mirrors going black or the app freezing after long sessions with recordings active \u2014 especially with several instances running in the background. Under sustained load the decorative blurred background could overload the graphics system on machines with a weak or software-only GPU, crashing the renderer and blacking out every mirror at once. The heavy blur is now switched off automatically on those machines, and playback of recordings no longer lets timers pile up over time. Recordings can now run for hours across several instances without the freezing or black-outs.' },
   ]},
-  { ver:'v1.11.8', items:[
-    { t:'fix', txt:'Copy and paste now works both ways between the PC and a mirrored device. Copy on the phone and it lands on your computer clipboard; press Ctrl+V over an instance and your PC clipboard is pasted into it.' },
-    { t:'fix', txt:'Device audio no longer doubles up with multiple instances. A device\u2019s sound was being played once per open instance of that device, so two instances meant everything sounded doubled and distorted. It now plays exactly once.' },
-    { t:'fix', txt:'You can now enable a record on more instances after starting it. Turning on "this instance" for a record no longer blocks enabling it on the others; the running record picks up newly enabled instances on its next pass.' },
-    { t:'new', txt:'Settings now explain themselves. A "?" next to each option shows a short, plain-language description on hover, and the five performance controls (resolution, FPS, bitrate, DPI, keyframe interval) also show how much each one affects performance.' },
-    { t:'chg', txt:'Troubleshooting moved to a button beside the Help title and now opens as a side panel, so you can read it next to the guide instead of replacing it.' },
-    { t:'chg', txt:'Further translation polish: the top-bar tooltips, the Layout Manager, and several labels that were still English are now translated across all six languages, the Japanese was simplified to read more naturally, and some awkward Spanish was fixed.' },
+  { ver:'v1.12.3', items:[
+    { t:'fix', txt:'Fixed the black flashing and occasional \u201Cmirror restart\u201D some users saw. A recovery check added in 1.12.2 was too aggressive: a static or paused game legitimately sends no new frames for a while, and the check mistook that for a frozen decoder and forced a repaint \u2014 causing a brief black flash that felt like the mirror restarting. That check was removed. Genuine decoder failures still recover on their own, without restarting the instance.' },
+    { t:'new', txt:'Setup guide improved for Xiaomi and similar devices. The USB Debugging step now explains the extra \u201CUSB debugging (Security settings)\u201D option needed for taps to work (including the Mi-account requirement), and reminds you to raise the screen timeout / disable auto-lock so the device doesn\u2019t sleep and drop the session mid-session.' },
   ]},
-  { ver:'v1.11.7', items:[
-    { t:'fix', txt:'Multi-launch is reliable again. Launching several instances on one device could fail with a server crash \u2014 the jar the server reads had been left in an unreadable state by an over-eager caching optimisation. The jar is now delivered fresh and verified for every instance, and the whole batch appears at once in a Starting state while each mirror comes up in turn.' },
-    { t:'fix', txt:'Big performance improvement under load. With several mirrors open, using a heavy app alongside Vortynix could slow everything to a crawl, taps included. Video decoding now explicitly prefers your device\u2019s hardware decoder instead of silently falling back to software \u2014 four software decodes are what saturated the machine. Painting is also thinned out while the window is in the background, so Vortynix stops fighting whatever app you switched to for the GPU.' },
-    { t:'fix', txt:'Unlocked devices are no longer asked to unlock. The lock-screen check was misreading a device in daydream/doze or with an always-on display as locked, so a phone you had already unlocked would still show the unlock prompt. It now trusts only the fields that mean the secure lock screen is genuinely up.' },
-    { t:'fix', txt:'Turn-off-screen behaves correctly with several mirrors of one device. Closing one instance no longer turns the screen back on while others are still open, and no longer disturbs the surviving instances \u2014 they used to restart, go black, or stop taking input. The screen now turns on only when the last instance of that device closes.' },
-    { t:'chg', txt:'Closing an instance no longer restarts its siblings. Previously, closing the instance that happened to carry a device\u2019s audio would restart another one to move the audio over. That restart wasn\u2019t worth it \u2014 now the others are left completely untouched, and the device simply goes quiet until you restart an instance yourself.' },
-    { t:'fix', txt:'A record left playing when Vortynix closes no longer comes back looking like it is still running, and records now stop when the instances they play into are closed.' },
-    { t:'fix', txt:'The changelog now actually opens after an update, the system tray works in the installed app, and the app selector no longer shows "null" where a device\u2019s user profile label belongs.' },
-    { t:'chg', txt:'The app filter in the launch screen now starts empty and remembers whatever you last typed across sessions.' },
-    { t:'chg', txt:'More of the interface is fully translated \u2014 notifications, tooltips, placeholders and buttons that were still in English now follow your chosen language across all six.' },
+  { ver:'v1.12.2', items:[
+    { t:'fix', txt:'Fixed instances that would freeze on a black screen after a long time running. A mirror\u2019s video decoder could silently stop and leave the tab black. Vortynix now detects this and revives the instance automatically \u2014 without restarting it or reconnecting \u2014 so the picture comes back on its own within a couple of seconds.' },
+    { t:'new', txt:'Clearer help when a device blocks taps. Some devices (notably Xiaomi/Redmi/POCO) mirror the screen fine but silently block taps. Vortynix now detects this and shows step-by-step instructions to fix it: sign in to a Mi account, enable \u201CUSB debugging (Security settings)\u201D in Developer options, and reboot.' },
   ]},
-  { ver:'v1.11.3', items:[
-    { t:'fix', txt:'The changelog now actually opens after an update. It was meant to show once on the first launch of a new version, but it never appeared for anyone updating from 1.11.1 or earlier: with no record of a previously seen version it assumed a fresh install and stayed quiet \u2014 which is exactly the situation on the first update it ships in.' },
-    { t:'fix', txt:'A record left playing when Vortynix closes no longer comes back looking like it is still running. Playback lives in memory, so it genuinely stops when the app exits \u2014 but a record\u2019s target instances are saved to disk, and the interface read those to decide what was playing. You reopened to a Stop button with nothing behind it.' },
-    { t:'fix', txt:'Records now stop when the instances they play into are closed. A record taps specific instances; closing the last one it targets used to leave it running, firing taps at a tab that no longer existed. Closing every instance stops all playback. A record aimed at several instances keeps going on whichever ones remain.' },
-    { t:'fix', txt:'The system tray works in the installed app. Minimising with an instance in window mode did nothing, because the tray icon was looked up in a folder that only exists when running from source \u2014 the lookup failed and the tray was skipped silently.' },
-    { t:'chg', txt:'The changelog is now translated into all six languages in the app, history included.' },
+  { ver:'v1.12.1', items:[
+    { t:'fix', txt:'Game logins now work correctly when you run several instances on one device. With two instances of the same game on a tablet (for example a personal space and a second space), the login window could be tied to the wrong instance \u2014 so after signing in, the wrong instance received it. Each login is now matched to the exact instance that opened it, by its own virtual display, and the finished sign-in is handed back to that same instance.' },
+    { t:'fix', txt:'The login window\u2019s title now shows the instance that opened it \u2014 the app name and, if the tab has a nickname, that nickname in parentheses \u2014 instead of a generic title. Its icon is the app\u2019s own icon.' },
+    { t:'fix', txt:'The broadcast button\u2019s tooltip now shows its keyboard shortcut (Ctrl+B, Cmd+B on macOS).' },
   ]},
-  { ver:'v1.11.2', items:[
-    { t:'fix', txt:'Audio no longer sounds doubled and distorted. Every instance was running several audio decoders at once \u2014 the launch created one, the stream\u2019s codec header created another, and the first was left alive, still decoding and still playing on its own timeline. What you heard was two or three copies of the same audio layered on top of each other. Only one decoder now exists per instance, and the wasted CPU goes back to the video.' },
-    { t:'fix', txt:'Audio no longer crackles or cuts out. Each chunk used to play the instant it finished decoding, so any hiccup in delivery left a gap (a click) or an overlap (distortion). Audio now plays on a proper timeline, where each chunk starts exactly where the last one ended.' },
-    { t:'fix', txt:'Settings dropdowns no longer snap shut when instances are running. The chat detector runs continuously in the background and kept pulling keyboard focus back to the mirror \u2014 including out of a dropdown you had just opened.' },
-    { t:'fix', txt:'The unlock prompt no longer flashes up and disappears when mirroring a locked device. The video stream and the lock-screen check were racing; the mirror won and painted over the prompt before the check had finished.' },
-    { t:'fix', txt:'Instances that need unlocking now respond to clicks after you unlock, and the \u201cturn off screen\u201d setting applies to them properly.' },
-    { t:'fix', txt:'Launching straight into window mode now opens the instance window reliably. It fired on a fixed timer that didn\u2019t wait for the mirror to be ready, so whether it worked came down to whether the stream happened to be fast enough that time.' },
-    { t:'fix', txt:'Licenses no longer lock you out on your own machine. The device fingerprint was rebuilt on every launch from whichever system probe answered first, and a slow probe (antivirus, a busy machine) meant a different answer \u2014 and a \u201cDevice mismatch\u201d you couldn\u2019t recover from. The fingerprint is now stable, and a license that can\u2019t be verified falls back to your remaining subscription days instead of locking the app.' },
-    { t:'add', txt:'System tray \u2014 minimise the main window while an instance is in window mode and Vortynix parks itself in the notification area. Double-click to bring it back, or right-click for your instance windows, launch, settings and devices.' },
-    { t:'add', txt:'Shortcuts on/off button in the top bar, for instances that have shortcuts bound. Turn zone shortcuts off when you want the keys to go straight to the device.' },
-    { t:'add', txt:'The changelog now opens by itself the first time you launch a new version.' },
-    { t:'chg', txt:'Hidden instances no longer repaint their canvas \u2014 they keep decoding (broadcast and in-game notifications work exactly as before), but painting a screen nobody is looking at was about three quarters of all the drawing work with four instances open.' },
-  ]},
-  { ver:'v1.11.1', items:[
-    { t:'fix', txt:'Multi-launch no longer kills instances. Launching several at once could leave some dead with a timeout error, needing a manual restart \u2014 the launcher only looked sequential and was actually firing every launch in parallel, so they competed for the device\u2019s single adb channel and the later ones ran out of time. Launches are now genuinely one-at-a-time per device (different devices still launch in parallel).' },
-    { t:'fix', txt:'Locked devices no longer slip through multi-launch. Each instance used to probe the lock screen on its own, so batch launches raced each other and some started without prompting. Instances on the same device now share one fresh probe.' },
-    { t:'fix', txt:'Locked-device detection no longer misses devices that need unlocking. The old check inferred input from window focus, which could look fine while the lock screen silently dropped every tap \u2014 you\u2019d get video that ignored you, with no prompt.' },
-    { t:'add', txt:'\u201cUse device while locked\u201d toggle \u2014 in Settings and the launch dialog. Off by default. Turn it on for devices you know accept taps while locked and they\u2019ll launch without an unlock prompt. The warning next to it explains what happens if your device doesn\u2019t support it.' },
-    { t:'chg', txt:'Locked devices now ask you to unlock by default. Auto-detecting which devices accept locked input turned out not to be reliable \u2014 devices that accept taps and devices that drop them report identical state to Android, so the difference is invisible to us. Rather than guess wrong, Vortynix asks; use the toggle above to opt out per device.' },
-  ]},
-  { ver:'v1.11.0', items:[
-    { t:'add', txt:'Multi-launch with locked devices \u2014 launching several instances at once on a locked device shows a single unlock prompt per device; unlock once and every waiting instance for that device starts together.' },
-    { t:'fix', txt:'The \u201cunlock your device\u201d card now stays until the mirror is truly back up, so you no longer briefly see the previous frozen frame.' },
-    { t:'chg', txt:'Broadcast targets now list all live instances regardless of app, and each row shows the original app name.' },
-  ]},
-  { ver:'v1.10.0', items:[
-    { t:'add', txt:'Locked-device play — Vortynix works with the device locked. Devices that accept it launch straight through; devices that block input while locked show a one-time unlock prompt and work right after you unlock.' },
-    { t:'add', txt:'Battery indicator — see each connected device\u2019s battery level in the launch dialog and in View devices, with low-battery warnings at 15% and 5%.' },
-    { t:'fix', txt:'Audio now reliably plays on your PC for every device, including tablets (previously the sound only came out of the device speaker).' },
-    { t:'fix', txt:'Input no longer dies a few seconds after launch on devices whose screen dozes while locked — the panel is kept awake so taps keep landing.' },
-    { t:'fix', txt:'Input injection with audio enabled is now rock-solid — a socket-ordering race that could silently break clicks has been eliminated.' },
-  ]},
-  { ver:'v1.9.0', items:[
-    { t:'add', txt:'Pop-out windows — drag any instance out of the tab bar into its own movable window, great for spreading mirrors across monitors. Return it anytime, or close it to stop just that instance.' },
-    { t:'add', txt:'Window mode — a toggle (in Settings and the launch dialog) opens instances directly as separate windows; your choice is remembered.' },
-    { t:'add', txt:'Broadcast target picker — turning on Broadcast opens a wizard listing running instances so you can choose exactly which ones receive your clicks.' },
-    { t:'add', txt:'Shortcuts, in-game button detection and window controls now work inside pop-out windows too.' },
-    { t:'chg', txt:'Redesigned audio mixer sliders — smooth click-and-drag volume with a live fill indicator and a clear muted state.' },
-    { t:'fix', txt:'Audio mute is now respected reliably, and the mixer no longer lists devices incorrectly.' },
-    { t:'fix', txt:'Background instances stay live instead of freezing when unfocused.' },
-    { t:'fix', txt:'Persisted settings now apply on startup, instead of only after toggling them off and on.' },
-  ]},
-  { ver:'v1.8.0', items:[
-    { t:'add', txt:'Memberships — Vortynix is now available through a membership. Subscribe to get your license key and unlock every feature; courtesy keys stay valid for life.' },
-    { t:'add', txt:'License details in About — see your plan at a glance: lifetime, next renewal date, or when access ends.' },
-    { t:'add', txt:'Expiry reminder — a heads-up appears when your membership is about to lapse, so you never lose access by surprise.' },
-    { t:'chg', txt:'Fresh new logo and app icon — a cleaner mark that better fits Vortynix.' },
-  ]},
-  { ver:'v1.7.0', items:[
-    { t:'add', txt:'Audio to PC — device audio is captured and played on your computer. Requires Android 13+. Capturing routes the sound to the PC and mutes the phone speaker.' },
-    { t:'add', txt:'Audio mixer — a new Audio button in the topbar opens a per-device volume and mute panel (one audio mix per phone).' },
-    { t:'add', txt:'Changelog window.' },
-    { t:'chg', txt:'Redesigned topbar — navigation is now a segmented control with a sliding highlight; status pills moved to the right behind a divider.' },
-    { t:'chg', txt:'Broadcast button appears when 2+ instances are active; the hide-bar button appears when an instance is active.' },
-    { t:'chg', txt:'Help, Report a bug, Discord and About moved into a single ⋯ menu.' },
-    { t:'fix', txt:'First mirror now respects the screen-off toggle and accepts interaction immediately.' },
-    { t:'fix', txt:'Removed the Close item from the tab right-click menu.' },
-  ]},
-  { ver:'v1.6.1', items:[
-    { t:'fix', txt:'Frozen hidden instances — background mirrors repaint on a light schedule; a focused tab repaints immediately.' },
-    { t:'fix', txt:'Stuck input after using the phone during startup — taps are ignored until the video stream is live.' },
-    { t:'fix', txt:'Settings dropdowns no longer close instantly when opened from the topbar.' },
-    { t:'fix', txt:'Theme picker no longer crashes when clicking the theme button.' },
-    { t:'chg', txt:'High-resolution stability — hardware-accelerated decoding is explicitly requested; decoder errors recover on the next keyframe.' },
-    { t:'chg', txt:'Selecting 2K/4K while instances run shows a heads-up that multiple high-res mirrors can overload the phone.' },
-  ]},
-  { ver:'v1.6.0', items:[
-    { t:'add', txt:'Theme system — 8 selectable color palettes; the choice persists and applies instantly everywhere.' },
-    { t:'add', txt:'New neutral logo and app icon.' },
-    { t:'chg', txt:'Cleaner topbar and full translations (EN, ES, PT, JA, DE, FR).' },
-    { t:'fix', txt:'Fixed the shortcuts panel crash and several missing translations.' },
-    { t:'chg', txt:'Default theme changed from Amber to Gray.' },
-  ]},
-  { ver:'v1.5.0', items:[
-    { t:'add', txt:'Layout Manager — save your open instances as a named layout and restore them all in one click.' },
-    { t:'add', txt:'Broadcast mode — send every click on the active mirror to all other instances of the same app.' },
-    { t:'chg', txt:'Button detection rewritten with template matching — accurate across every resolution.' },
-    { t:'fix', txt:'Keyboard shortcuts work immediately without clicking the mirror first.' },
-    { t:'fix', txt:'Consistent resolution scaling across instances of the same preset.' },
-  ]},
-  { ver:'v1.4.0', items:[
-    { t:'add', txt:'Auto-reconnect — a dropped mirror shows a 3-second countdown and reconnects automatically.' },
-    { t:'add', txt:'FPS counter — live per-tab FPS, toggleable in Settings.' },
-    { t:'add', txt:'In-app notifications (toasts) — stacked bottom-right, colored by type, auto-dismiss.' },
-  ]},
-  { ver:'v1.3.x', items:[
-    { t:'add', txt:'Shortcut Profiles — save an instance\u2019s zone layout and apply it to any instance in one click.' },
-    { t:'chg', txt:'Fullscreen top-bar peek now requires the mouse at the very top edge.' },
-  ]},
-  { ver:'v1.1.x', items:[
-    { t:'add', txt:'Multi-launch — select multiple apps across multiple devices and launch them all at once.' },
-    { t:'add', txt:'Silent background updates, with a live update check every 5 minutes.' },
-    { t:'fix', txt:'Clicking outside a panel now closes it; panels are protected while editing zones.' },
-  ]},
-  { ver:'v1.0.0', items:[
-    { t:'add', txt:'Multi-instance Android mirroring on isolated virtual displays.' },
-    { t:'add', txt:'Multi-device support — connect and mirror several devices at once.' },
-    { t:'add', txt:'Samsung Secure Folder support (no root).' },
-    { t:'add', txt:'Shortcuts (zones), tab nicknames, settings presets, and turn-off-screen while mirroring.' },
+  { ver:'v1.12.0', items:[
+    { t:'new', txt:'Game logins that used to be unusable now open in their own clean window. Some games (like Dofus Touch) open the Ankama account login as a floating browser window on the mirror, which rendered cut off and wouldn\u2019t accept typing. Vortynix now detects that login, closes the broken floating window, and opens the same login in a proper native window where the keyboard, fields and saved passwords all work. When you finish, it hands the sign-in back to the game automatically.' },
+    { t:'new', txt:'Devices now show their real name. Instead of just a model code and serial, each device shows its commercial name (like \u201CXiaomi Pad 6\u201D), then the model and serial below it, with a tablet or phone icon. The name is detected automatically from the device.' },
+    { t:'new', txt:'You now get a notification when a device is plugged in or unplugged. A toast appears with the device name and serial whenever a USB device connects or disconnects, so you always know what\u2019s happening without watching the device list.' },
+    { t:'new', txt:'New mint-green default theme and a refreshed font. Vortynix now opens with a mint/teal theme that matches the website and admin panel, and uses the Space Grotesk typeface throughout for a cleaner, more modern look. The old Lime theme was removed.' },
+    { t:'new', txt:'Records now play per instance, and you can choose exactly which instances they run on. Each mirror can play a record independently, and \u201CSelect instances\u201D lets you pick the exact instances a record applies to. A pulsing dot on a tab shows which instances are running a macro. Play stays disabled until you\u2019ve selected at least one instance.' },
+    { t:'new', txt:'Broadcast now has a keyboard shortcut: Ctrl+B (Cmd+B on macOS). It toggles broadcast the same way as the button, and the shortcut is shown in the button\u2019s tooltip.' },
   ]},
 ];
-const CL_TAG = { add:'NEW', chg:'CHANGED', fix:'FIXED' };
+const CL_TAG = { add:'NEW', new:'NEW', chg:'CHANGED', fix:'FIXED' };
 function renderChangelog(){
   const body = document.getElementById('cl-body');
   body.innerHTML = CHANGELOG.map((rel,idx)=>`
     <div class="cl-rel">
       <div class="cl-rel-head">
         ${idx===0?`<span class="whats">What\u2019s new in</span>`:''}
-        <span class="v" style="font-size:${idx===0?'18':'15'}px">${rel.ver}</span>
+        <span class="v">${rel.ver}</span>
       </div>
       ${rel.items.map(it=>`
         <div class="cl-item">
-          <span class="cl-tag ${it.t}">${CL_TAG[it.t]||'CHANGED'}</span>
+          <span class="cl-tag ${it.t==='new'?'add':it.t}">${CL_TAG[it.t]||'CHANGED'}</span>
           <span class="txt">${it.txt}</span>
         </div>`).join('')}
     </div>`).join('');
 }
-function openChangelog(){ renderChangelog(); document.getElementById('cl-backdrop').classList.add('open'); }
-function closeChangelog(){ document.getElementById('cl-backdrop').classList.remove('open'); }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeChangelog(); });
+function openChangelog(){ renderChangelog(); document.getElementById('cl-backdrop').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeChangelog(){ document.getElementById('cl-backdrop').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── Legal content ──────────────────────────────────────── */
+const LEGAL = {
+  tos: {
+    title: 'Terms of Service',
+    html: `
+      <p class="updated">Last updated: August 2026</p>
+      <p>These Terms govern your use of Vortynix (the "Software"), a Windows application developed by Aeonxy ("we", "us"). By downloading, installing or using Vortynix, you agree to these Terms. If you do not agree, do not use the Software.</p>
+
+      <h4>1. License</h4>
+      <p>Access to Vortynix is provided through a paid membership on Patreon. A valid, active membership grants you a personal, non-exclusive, non-transferable license to install and use the Software on devices you own or control. Your license key is tied to your membership and is for your use only.</p>
+
+      <h4>2. Acceptable use</h4>
+      <p>You agree to use Vortynix only with devices and accounts you own or are authorized to control, and in compliance with all applicable laws and the terms of any third-party apps or services you mirror. You are solely responsible for how you use the Software, including compliance with the terms of any game or app you run through it.</p>
+      <ul>
+        <li>Do not resell, redistribute, sublicense, or share your license key.</li>
+        <li>Do not reverse-engineer, decompile, or attempt to circumvent licensing.</li>
+        <li>Do not use the Software for any unlawful purpose or to violate the rights of others.</li>
+      </ul>
+
+      <h4>3. Third-party services and apps</h4>
+      <p>Vortynix mirrors and controls Android devices you connect. We do not control, endorse, or take responsibility for the third-party apps, games or services you choose to run. Some services may restrict automation or multi-account use; complying with their rules is your responsibility.</p>
+
+      <h4>4. Payments and membership</h4>
+      <p>Billing, renewals and cancellations are handled by Patreon under Patreon's own terms. If your membership lapses or is cancelled, your license may be deactivated. We do not process or store your payment details.</p>
+
+      <h4>5. Availability and updates</h4>
+      <p>The Software is provided on an ongoing basis and may receive updates. We may modify, suspend, or discontinue features at any time. We aim to keep Vortynix working well but do not guarantee uninterrupted or error-free operation.</p>
+
+      <h4>6. Disclaimer of warranty</h4>
+      <p>The Software is provided "as is" and "as available", without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. You use Vortynix at your own risk.</p>
+
+      <h4>7. Limitation of liability</h4>
+      <p>To the maximum extent permitted by law, Aeonxy shall not be liable for any indirect, incidental, special or consequential damages, or for any loss of data, accounts, or profits, arising from your use of or inability to use the Software.</p>
+
+      <h4>8. Termination</h4>
+      <p>We may suspend or terminate your license if you breach these Terms or misuse the Software. On termination, you must stop using Vortynix and remove it from your devices.</p>
+
+      <h4>9. Changes to these Terms</h4>
+      <p>We may update these Terms from time to time. Continued use of the Software after changes take effect constitutes acceptance of the revised Terms.</p>
+
+      <h4>10. Contact</h4>
+      <p>Questions about these Terms? Reach us on our <a href="https://discord.gg/KZHeDJzMgg">Discord</a> or at <a href="mailto:vortynix.support@gmail.com">vortynix.support@gmail.com</a>.</p>
+    `
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    html: `
+      <p class="updated">Last updated: August 2026</p>
+      <p>This Privacy Policy explains what information Vortynix and Aeonxy ("we", "us") handle when you use the Software and related services. We keep data collection to the minimum needed to deliver your license and support the app.</p>
+
+      <h4>1. Runs on your machine</h4>
+      <p>Vortynix is a desktop application that runs locally on your Windows PC. Mirroring, input, audio and automation happen on your own computer and the devices you connect over USB or your local network. The screen content of your devices is not transmitted to us.</p>
+
+      <h4>2. Information we handle</h4>
+      <ul>
+        <li><b>Membership &amp; license data.</b> To deliver and validate your license, we process the information needed to link your Patreon membership to a license key — such as your Patreon account identifier, membership status, and, if you link it, your Discord account for key delivery.</li>
+        <li><b>Delivery contact.</b> If you receive your key by email, we use the email address you provide solely to send it.</li>
+        <li><b>Support communication.</b> If you contact us on Discord or by email, we keep those messages to help you.</li>
+      </ul>
+
+      <h4>3. What we do not collect</h4>
+      <p>We do not collect the screen contents of your mirrored devices, your keystrokes, your gameplay, or the accounts you run inside the app. Vortynix contains no third-party advertising or analytics trackers that profile you.</p>
+
+      <h4>4. How we use it</h4>
+      <p>We use the limited information above only to: issue and validate your license, deliver your key, provide member roles, and respond to support requests. We do not sell your data.</p>
+
+      <h4>5. Third-party services</h4>
+      <p>We rely on a few services to run the membership and delivery: <b>Patreon</b> (billing and membership), <b>Discord</b> (member roles and key delivery), and email delivery for keys. Each has its own privacy policy governing the data they process. GitHub is used to distribute app updates.</p>
+
+      <h4>6. Data retention</h4>
+      <p>We keep license and membership records for as long as your membership is active and as needed to provide the service or meet legal obligations. You can request deletion of your delivery contact details by contacting us.</p>
+
+      <h4>7. Security</h4>
+      <p>We take reasonable measures to protect the limited data we hold. No method of transmission or storage is completely secure, but we work to keep your license information safe.</p>
+
+      <h4>8. Your choices</h4>
+      <p>You may unlink your Discord, stop using the Software, or contact us to ask what we hold or to request deletion of your contact details, subject to what we must keep to operate the license.</p>
+
+      <h4>9. Changes to this Policy</h4>
+      <p>We may update this Policy from time to time. Material changes will be reflected by the "last updated" date above.</p>
+
+      <h4>10. Contact</h4>
+      <p>Questions about privacy? Reach us on our <a href="https://discord.gg/KZHeDJzMgg">Discord</a> or at <a href="mailto:vortynix.support@gmail.com">vortynix.support@gmail.com</a>.</p>
+    `
+  }
+};
+function openLegal(which){
+  const l = LEGAL[which]; if(!l) return;
+  document.getElementById('legal-title').textContent = l.title;
+  document.getElementById('legal-body').innerHTML = l.html;
+  document.getElementById('legal-backdrop').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLegal(){
+  document.getElementById('legal-backdrop').classList.remove('open');
+  document.body.style.overflow='';
+  // Drop the legal hash so the link can be clicked again and the URL is clean.
+  if(location.hash==='#terms-of-services' || location.hash==='#privacy-policy'){
+    history.replaceState(null,'',location.pathname+location.search);
+  }
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeChangelog(); closeLegal(); } });
+
+/* ── Scroll reveal ──────────────────────────────────────── */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold:.12 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* deep-link support: open the matching legal modal from the URL hash, both on
+   first load and when the hash changes (e.g. clicking a link that ends in the
+   anchor). These match the public URLs:
+     …/#terms-of-services   → Terms of Service
+     …/#privacy-policy      → Privacy Policy */
+function handleLegalHash(){
+  const h = location.hash;
+  if(h === '#terms-of-services') openLegal('tos');
+  else if(h === '#privacy-policy') openLegal('privacy');
+}
+handleLegalHash();
+window.addEventListener('hashchange', handleLegalHash);
 </script>
 </body>
 </html>
