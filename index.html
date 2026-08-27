@@ -504,6 +504,31 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
 <script>
 /* ── Changelog data ─────────────────────────────────────── */
 const CHANGELOG = [
+  { ver:'v1.20.0', items:[
+    { t:'new', txt:'The \u201cUse the device\u2019s real screen\u201d option is now truly per-device: turning it on for one phone or tablet no longer affects the others. Each device remembers its own setting, in both Settings and the New instance window.' },
+    { t:'chg', txt:'Real-screen mirroring now starts faster and never captures audio \u2014 it mirrors the device\u2019s own screen directly, which is ideal for older phones that can\u2019t open several windows. The device\u2019s native resolution and orientation are used as-is.' },
+    { t:'fix', txt:'Fixed a recording that kept sending taps after being deleted while it was playing. Deleting a recording now stops every playback immediately \u2014 including recordings playing into specific instances, not just the \u201call instances\u201d case.' },
+  ]},
+  { ver:'v1.13.3', items:[
+    { t:'new', txt:'Added a per-device switch \u201cUse the device\u2019s real screen\u201d in Settings and in the New window options. Turn it on for phones or tablets that can\u2019t open several windows (the screen stays black or nothing happens) \u2014 it shows the real screen instead. This replaces the old automatic pop-up, which was causing problems for some users.' },
+    { t:'chg', txt:'Made the wording throughout the app clearer and easier to understand, in all six languages. Technical terms were replaced with plain, everyday language so anyone can follow along, without changing how anything works.' },
+  ]},
+  { ver:'v1.13.2', items:[
+    { t:'fix', txt:'Improved how the app handles phones that can\u2019t split their screen. Instead of showing a black \u201cMirror ended\u201d screen, the app now checks whether your phone supports separate windows before it starts, and if it doesn\u2019t, it asks you with a clear pop-up whether to mirror on the phone\u2019s real screen instead. The check works on any make or model.' },
+  ]},
+  { ver:'v1.13.1', items:[
+    { t:'fix', txt:'Fixed some apps not showing up in the app list \u2014 apps that came preinstalled on the phone (like YouTube or TikTok on certain brands) were being skipped. The list now includes every app you can actually open, whether you installed it or it shipped with the phone.' },
+    { t:'fix', txt:'Apps now show their real name and icon instead of a raw package name and a letter. The app\u2019s actual display name (e.g. \u201cTikTok\u201d rather than \u201cMusically\u201d) and its real icon are read straight from the app and shown in the list and on each tab.' },
+    { t:'fix', txt:'Fixed \u201cMirror ended\u201d on some phones that can\u2019t split their screen (seen on certain Samsung Galaxy A-series and other entry-level devices). When a phone can\u2019t run separate windows, the app now offers to mirror it on the phone\u2019s real screen instead of just failing, with a clear message explaining the choice.' },
+    { t:'fix', txt:'Fixed recorded tap sequences playing back at the wrong speed. Recordings now replay at exactly the pace they were made, and the speed control (1x, 2x\u2026) scales them correctly.' },
+    { t:'chg', txt:'When devices are already connected as the app opens, the loading screen now stays up a moment longer so your devices and their apps are ready the instant you reach the app, instead of popping in afterward.' },
+  ]},
+  { ver:'v1.13.0', items:[
+    { t:'fix', txt:'Fixed stutter in the mirror that some setups started seeing \u2014 small hitches roughly once a second even with a single instance. In the background the app was querying connected devices over and over on timers, and each of those queries competed with the live video stream for the same connection, hiccuping the picture. Those repeated queries are gone (the app now reacts to device changes as they happen instead of asking on a loop), and a device\u2019s serial is read once instead of every second. Playback is noticeably smoother.' },
+    { t:'fix', txt:'Fixed the app sometimes running everything on the processor instead of the graphics card. On some machines \u2014 especially with very recent GPUs \u2014 the app read the graphics status a fraction of a second too early, while the card was still starting up, and mistook it for a machine with no real GPU. It then stayed in software mode for the whole session: no hardware video decoding, heavier CPU use, and stutter. The app now waits for the graphics card to finish initializing before deciding, and corrects itself if the first read was too early.' },
+    { t:'new', txt:'The app now adapts to your machine\u2019s tier automatically, using the same graphics detection that controls the background blur. On machines with a real GPU, background instances keep running at full speed instead of having their frame rate reduced when the window isn\u2019t focused. On low-end or GPU-less machines, the resource-saving behavior stays on to keep things smooth. You don\u2019t have to configure anything \u2014 it picks the right mode on startup.' },
+    { t:'fix', txt:'Fixed the columns in the New instance window not lining up and getting cut off when the window was small. The Settings and Custom panels now share the same height as the main panel, their headers align, and the whole window keeps everything visible instead of pushing the Custom column off the edge on narrower screens.' },
+  ]},
   { ver:'v1.12.4', items:[
     { t:'fix', txt:'Fixed mirrors going black or the app freezing after long sessions with recordings active \u2014 especially with several instances running in the background. Under sustained load the decorative blurred background could overload the graphics system on machines with a weak or software-only GPU, crashing the renderer and blacking out every mirror at once. The heavy blur is now switched off automatically on those machines, and playback of recordings no longer lets timers pile up over time. Recordings can now run for hours across several instances without the freezing or black-outs.' },
   ]},
