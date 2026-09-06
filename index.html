@@ -504,6 +504,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
 <script>
 /* ── Changelog data ─────────────────────────────────────── */
 const CHANGELOG = [
+  { ver:'v1.21.0', items:[
+    { t:'new', txt:'Gamepad-style controls for any game: add a virtual joystick (8-way, WASD-style with diagonals) and a mouse-look camera pad to aim like a PC shooter. Place them right on the mirror.' },
+    { t:'new', txt:'Bind mouse clicks and Shift to zones, and set a zone to Hold \u2014 it stays pressed while you hold the key (great for aiming, sprinting or firing). Everything works together via true multi-touch.' },
+    { t:'new', txt:'New remappable General shortcuts: Fullscreen (hide bar), Toggle shortcuts, Broadcast, Camera lock and Aim mode \u2014 one key that turns your controls on and grabs the mouse to aim. Each can be cleared or reset.' },
+    { t:'new', txt:'Two-way clipboard sync: Ctrl+C brings the device\u2019s clipboard to your PC and Ctrl+V pushes your PC clipboard to the device \u2014 without interfering with taps.' },
+    { t:'fix', txt:'Fixed a long-standing input issue where taps could become laggy or get lost during play. Touch input is now rock-solid, even with several instances open.' },
+    { t:'chg', txt:'The Shortcuts tabs are now General and Controls, with clearer help text, and consistent wording throughout the app (\u201cdevice\u201d instead of \u201cphone\u201d).' },
+  ]},
   { ver:'v1.20.0', items:[
     { t:'new', txt:'The \u201cUse the device\u2019s real screen\u201d option is now truly per-device: turning it on for one phone or tablet no longer affects the others. Each device remembers its own setting, in both Settings and the New instance window.' },
     { t:'chg', txt:'Real-screen mirroring now starts faster and never captures audio \u2014 it mirrors the device\u2019s own screen directly, which is ideal for older phones that can\u2019t open several windows. The device\u2019s native resolution and orientation are used as-is.' },
