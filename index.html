@@ -134,14 +134,6 @@ img,video{display:block;max-width:100%}
   overflow:hidden;background:var(--surface);position:relative;
   box-shadow:0 40px 120px -40px rgba(0,0,0,.85), 0 0 0 1px var(--mint-soft);
 }
-.shot-bar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface2)}
-.shot-dots{display:flex;gap:6px}
-.shot-dots i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
-.shot-dots i:nth-child(1){background:#f65959}
-.shot-dots i:nth-child(2){background:#f5b44f}
-.shot-dots i:nth-child(3){background:#5ce0c8}
-.shot-path{font-family:var(--mono);font-size:12px;color:var(--ink3)}
-.shot-stat{margin-left:auto;display:flex;gap:18px;font-family:var(--mono);font-size:12px;color:var(--ink2)}
 .hero-shot img,.hero-shot video{width:100%;object-fit:contain;background:var(--bg);display:block;aspect-ratio:16/9}
 
 /* ── Stats strip ─────────────────────────────────────────────── */
@@ -298,10 +290,126 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
   .feat-grid,.steps{grid-template-columns:1fr}
   .feat.span2{grid-column:span 1}
   .stats-in{grid-template-columns:1fr 1fr}
-  .shot-stat{display:none}
   section{padding:64px 0}
   .hero{padding:64px 0 48px}
 }
+/* ── Guided tour (animated demo) ─────────────────────────────── */
+.demo{width:min(1120px,100%);max-height:94vh;background:var(--surface);border:1px solid var(--line2);border-radius:18px;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 120px -30px rgba(0,0,0,.9),0 0 0 1px var(--mint-soft)}
+.demo-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.demo-head .k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:8px}
+.demo-head .k i{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2.4s infinite}
+.demo-stage{position:relative;width:100%;aspect-ratio:16/9;background:#05080a;overflow:hidden}
+.dm{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0}
+.dm-layer{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+.dm-layer.on{opacity:1}
+/* phone scene */
+.dm-phone-bg{background:radial-gradient(60% 70% at 50% 45%,rgba(92,224,200,.10),transparent 70%),#06090b}
+.dm-phone{position:absolute;left:50%;top:50%;width:300px;height:600px;margin:-300px 0 0 -150px;border-radius:44px;background:#0b0d10;
+  border:3px solid #2a2f37;box-shadow:inset 0 0 0 7px #15181d,0 40px 80px -30px rgba(0,0,0,.9),0 0 80px -20px rgba(92,224,200,.25);padding:16px}
+.dm-notch{position:absolute;top:22px;left:50%;width:80px;height:10px;border-radius:6px;background:#1c2026;transform:translateX(-50%);z-index:3}
+.dm-screen{position:relative;width:100%;height:100%;border-radius:30px;background:#f4f5f7;overflow:hidden;padding:46px 14px 14px;font-family:system-ui,sans-serif}
+.dm-ptitle{font-size:22px;font-weight:700;color:#111;margin:4px 6px 16px}
+.dm-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 12px;margin-bottom:8px;border-radius:14px;background:#fff;font-size:15px;color:#222;position:relative}
+.dm-row em{font-style:normal;color:#999}
+.dm-row.hl{outline:3px solid var(--mint);outline-offset:-2px}
+.dm-x7{font:800 15px var(--mono);color:#14967f}
+.dm-tog{width:46px;height:26px;border-radius:14px;background:#c8cbd0;position:relative;transition:background .3s}
+.dm-tog i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .3s}
+.dm-tog.on{background:var(--mint)}.dm-tog.on i{left:23px}
+.dm-toast{position:absolute;left:24px;right:24px;bottom:30px;padding:12px;border-radius:14px;background:#222;color:#fff;font-size:14px;text-align:center;opacity:0;transform:translateY(10px);transition:all .35s}
+.dm-toast.on{opacity:1;transform:none}
+.dm-dim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s}
+.dm-dialog{position:absolute;left:18px;right:18px;top:150px;border-radius:20px;background:#fff;padding:20px;color:#222;font-size:15px;opacity:0;transform:scale(.96);transition:all .3s}
+.dm-dlg-on .dm-dim{opacity:1}.dm-dlg-on .dm-dialog{opacity:1;transform:none}
+.dm-dialog b{display:block;font-size:17px;margin-bottom:8px}
+.dm-dialog small{display:block;color:#888;font-size:12px;margin-bottom:16px;word-break:break-all}
+.dm-check{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.dm-box{width:20px;height:20px;border-radius:5px;border:2px solid #888;transition:all .25s;flex-shrink:0}
+.dm-box.on{background:var(--mint);border-color:var(--mint);box-shadow:inset 0 0 0 3px #fff}
+.dm-btns{display:flex;justify-content:flex-end;gap:22px;font-weight:700;color:#666}
+.dm-allow{color:#fff;background:#14967f;padding:6px 16px;border-radius:10px}
+/* app replica */
+.dm-app{background:#060b0a;font-family:var(--grot)}
+.dm-top{height:46px;display:flex;align-items:center;gap:6px;padding:0 10px;background:rgba(8,12,12,.95);border-bottom:1px solid rgba(255,255,255,.08);position:relative;z-index:2}
+.dm-plus{width:32px;height:32px;border-radius:9px;background:var(--mint);color:#04120f;display:grid;place-items:center;font-weight:700;font-size:20px}
+.dm-sq{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.1)}
+.dm-nav{display:flex;gap:4px;margin-left:14px}
+.dm-nav span{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 12px;font-size:10.5px;color:#7d8a8c}
+.dm-nav span::before{content:'';width:15px;height:13px;border:1.6px solid #7d8a8c;border-radius:3px}
+.dm-win{margin-left:auto;display:flex;gap:18px;color:#7d8a8c;font-size:15px;padding-right:8px}
+.dm-tabs{height:36px;border-bottom:1px solid rgba(255,255,255,.06);background:#070c0c}
+.dm-content{position:absolute;left:0;right:0;top:82px;bottom:0}
+.dm-content canvas{position:absolute;inset:0;width:100%;height:100%}
+.dm-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.dm-status{font-size:14px;color:#9aa4b0;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(10,14,14,.7);display:flex;align-items:center;gap:8px;transition:color .3s,border-color .3s}
+.dm-status i{width:8px;height:8px;border-radius:50%;background:#f5b44f}
+.dm-status.ok{color:#d9f7f0;border-color:rgba(92,224,200,.4)}.dm-status.ok i{background:var(--mint);box-shadow:0 0 10px var(--mint)}
+.dm-newbtn{padding:13px 26px;border-radius:12px;background:var(--mint);color:#04120f;font-weight:700;font-size:16px;box-shadow:0 8px 30px -10px var(--mint)}
+.dm-hint{font:12px var(--mono);color:#5c6672}
+.dm-modal-wrap{position:absolute;inset:0;background:rgba(2,5,6,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.dm-modal-wrap.on{opacity:1}
+.dm-modal{width:900px;border-radius:16px;background:#0e1413;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px -20px rgba(0,0,0,.9);transform:scale(.96);transition:transform .3s}
+.dm-modal-wrap.on .dm-modal{transform:none}
+.dm-mh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);color:#eef1f4;font-weight:600;font-size:17px}
+.dm-mb{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:18px 20px}
+.dm-lbl{font:11px var(--mono);letter-spacing:.1em;color:#5c6672;text-transform:uppercase;margin-bottom:8px}
+.dm-dev{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);color:#d7dde2;font-size:14px;margin-bottom:14px;transition:all .25s}
+.dm-dev small{display:block;color:#5c6672;font-size:11px}
+.dm-dev.sel,.dm-app-row.sel,.dm-chip.sel{border-color:var(--mint);background:rgba(92,224,200,.10);color:#fff}
+.dm-search{padding:9px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.08);color:#5c6672;font-size:13px;margin-bottom:8px}
+.dm-app-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;border:1px solid transparent;color:#cfd6db;font-size:14px;transition:all .25s}
+.dm-app-row b{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:13px;color:#fff}
+.dm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.dm-chip{padding:8px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.1);color:#9aa4b0;font-size:13px;transition:all .25s}
+.dm-opt{height:12px;border-radius:6px;background:rgba(255,255,255,.05);margin-bottom:12px}
+.dm-mf{display:flex;justify-content:flex-end;gap:12px;padding:14px 20px;border-top:1px solid rgba(255,255,255,.07)}
+.dm-cancel{padding:9px 18px;border-radius:9px;color:#9aa4b0;font-size:14px}
+.dm-launch{padding:9px 22px;border-radius:9px;background:var(--mint);color:#04120f;font-weight:700;font-size:14px;opacity:.35;transition:opacity .3s}
+.dm-launch.on{opacity:1;box-shadow:0 6px 24px -8px var(--mint)}
+.dm-starting{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#9aa4b0;font-size:14px;opacity:0;transition:opacity .3s}
+.dm-starting.on{opacity:1}
+.dm-starting i{width:34px;height:34px;border-radius:50%;border:3px solid rgba(92,224,200,.2);border-top-color:var(--mint);animation:dmspin .8s linear infinite}
+@keyframes dmspin{to{transform:rotate(360deg)}}
+.dm-final img{width:100%;height:100%;object-fit:cover}
+/* cursor, finger, spotlight */
+.dm-spot{position:absolute;border-radius:14px;box-shadow:0 0 0 3000px rgba(0,0,0,.5),0 0 0 2px var(--mint),0 0 30px 4px rgba(92,224,200,.35);
+  opacity:0;transition:all .5s cubic-bezier(.3,.8,.3,1);pointer-events:none;z-index:8}
+.dm-spot.on{opacity:1}
+.dm-cursor{position:absolute;left:0;top:0;z-index:10;transition:transform .9s cubic-bezier(.45,.05,.25,1),opacity .3s;opacity:0;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+.dm-cursor.on{opacity:1}
+.dm-cursor.press svg{transform:scale(.82)}
+.dm-cursor svg{transition:transform .12s;transform-origin:4px 3px}
+.dm-finger{position:absolute;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(20,20,20,.25);border:2px solid rgba(255,255,255,.7);
+  z-index:10;opacity:0;transition:transform .7s cubic-bezier(.45,.05,.25,1),opacity .3s}
+.dm-finger.on{opacity:1}
+.dm-ripple{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:3px solid var(--mint);z-index:9;pointer-events:none;opacity:0}
+.dm-ripple.go{animation:dmrip .6s ease-out}
+@keyframes dmrip{0%{transform:scale(.3);opacity:.95}100%{transform:scale(1.7);opacity:0}}
+/* caption + controls */
+.demo-cap{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:16px 20px 18px;border-top:1px solid var(--line)}
+.demo-cap .st{font:12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mint);margin-bottom:4px}
+.demo-cap h4{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:3px}
+.demo-cap p{color:var(--ink2);font-size:14.5px;min-height:46px}
+.demo-cap p b{color:var(--ink)}
+.demo-ctrl{display:flex;align-items:center;gap:8px}
+.demo-ctrl button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line2);background:var(--surface2);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .18s,color .18s}
+.demo-ctrl button:hover{border-color:var(--mint);color:var(--mint)}
+.demo-dots{grid-column:1/-1;display:flex;gap:6px}
+.demo-dots i{flex:1;height:4px;border-radius:3px;background:var(--line2);overflow:hidden;cursor:pointer;position:relative}
+.demo-dots i.done{background:rgba(92,224,200,.55)}
+.demo-dots i b{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--mint)}
+.demo-end{position:absolute;inset:auto 0 26px 0;display:flex;justify-content:center;gap:12px;z-index:12;opacity:0;transition:opacity .4s;pointer-events:none}
+.demo-end.on{opacity:1;pointer-events:auto}
+@media(max-width:700px){.demo-cap{grid-template-columns:1fr}.demo-cap p{min-height:0}}
+/* styled scrollbars (changelog/legal modals and the page) */
+.modal-body,html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.14) transparent}
+.modal-body::-webkit-scrollbar,html::-webkit-scrollbar{width:10px}
+.modal-body::-webkit-scrollbar-track,html::-webkit-scrollbar-track{background:transparent}
+.modal-body::-webkit-scrollbar-track{margin:10px 0}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px;border:3px solid var(--surface)}
+html::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px;border:3px solid var(--bg)}
+.modal-body::-webkit-scrollbar-thumb:hover,html::-webkit-scrollbar-thumb:hover{background:rgba(92,224,200,.5)}
 </style>
 </head>
 <body>
@@ -330,20 +438,15 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
   <canvas class="hero-waves" id="heroWaves" aria-hidden="true"></canvas>
   <div class="hero-grid"></div>
   <div class="wrap">
-    <div class="eyebrow reveal" onclick="openChangelog()" role="button" tabindex="0"><span class="dot"></span> New in v1.23.0 · guided setup &amp; lossless audio</div>
+    <div class="eyebrow reveal" onclick="openChangelog()" role="button" tabindex="0"><span class="dot"></span> New in v1.23 · guided setup &amp; lossless audio</div>
     <h1 class="reveal">Run a dozen Android apps at once. <em>From one window.</em></h1>
     <p class="lede reveal">Vortynix mirrors many Android instances side by side — each on its own isolated virtual display — so you can pilot a whole fleet of accounts without juggling windows. No root, no app on the phone.</p>
     <div class="cta-row reveal">
       <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-primary">Get Vortynix on Patreon →</a>
-      <a href="#how" class="btn btn-ghost">See how it works</a>
+      <a href="#how" class="btn btn-ghost" onclick="openDemo();return false"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> See how it works</a>
     </div>
 
     <div class="hero-shot reveal">
-      <div class="shot-bar">
-        <span class="shot-dots"><i></i><i></i><i></i></span>
-        <span class="shot-path">vortynix · 4 instances live</span>
-        <span class="shot-stat"><span>4 ACTIVE</span><span>2 DEVICES</span><span>LOSSLESS AUDIO</span></span>
-      </div>
       <img src="assets/hero.png" alt="Vortynix with four Android instances open in tabs, the active one showing a game">
     </div>
   </div>
@@ -463,6 +566,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
     <div class="sec-head reveal">
       <div class="kicker">Getting started</div>
       <h2>From plugged-in to piloting in four steps</h2>
+      <p>Watch the guided tour — the same walkthrough the app gives you the first time you open it.</p>
+      <a href="#how" class="btn btn-primary" style="margin-top:20px" onclick="openDemo();return false"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Watch the guided tour</a>
     </div>
     <div class="steps">
       <div class="step reveal"><h4>Connect a device</h4><p>Enable USB debugging, plug in over USB or pair over Wi-Fi — a guided tutorial walks you through it the first time. Nothing to install on the phone.</p></div>
@@ -575,9 +680,96 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
   </div>
 </div>
 
+<!-- ── Guided tour (animated demo of the in-app tutorial) ───────── -->
+<div class="backdrop" id="demo-backdrop" onclick="if(event.target===this)closeDemo()">
+  <div class="demo" role="dialog" aria-modal="true" aria-label="Guided tour">
+    <div class="demo-head">
+      <span class="k"><i></i>Guided tour · from USB debugging to your first mirror</span>
+      <button class="modal-x" onclick="closeDemo()" aria-label="Close">×</button>
+    </div>
+    <div class="demo-stage" id="demoStage">
+      <div class="dm" id="dm">
+        <!-- Phone -->
+        <div class="dm-layer dm-phone-bg" id="dmPhone">
+          <div class="dm-phone"><div class="dm-notch"></div><div class="dm-screen" id="dmScreen"></div></div>
+        </div>
+        <!-- Vortynix replica -->
+        <div class="dm-layer dm-app" id="dmApp">
+          <div class="dm-top"><span class="dm-plus">+</span><span class="dm-sq"></span>
+            <div class="dm-nav"><span>Shortcuts</span><span>Routine</span><span>Capture</span><span>Audio</span><span>Mirror settings</span><span>Device settings</span></div>
+            <div class="dm-win"><span>—</span><span>☐</span><span>✕</span></div></div>
+          <div class="dm-tabs"></div>
+          <div class="dm-content">
+            <canvas id="dmWaves"></canvas>
+            <div class="dm-empty">
+              <div class="dm-status" id="dmStatus"><i></i><span>Scanning for devices…</span></div>
+              <div class="dm-newbtn" id="dmNew">+ New instance</div>
+              <div class="dm-hint">Ctrl + T</div>
+            </div>
+            <div class="dm-starting" id="dmStarting"><i></i>Starting…</div>
+          </div>
+          <div class="dm-modal-wrap" id="dmModal"><div class="dm-modal">
+            <div class="dm-mh"><span>New instance</span><span style="color:#5c6672">✕</span></div>
+            <div class="dm-mb">
+              <div>
+                <div class="dm-lbl">Device</div>
+                <div class="dm-dev" id="dmDev"><span style="font-size:20px">▭</span><div>Xiaomi Pad 6<small>23043RP34G</small></div></div>
+                <div class="dm-lbl">App</div>
+                <div id="dmApps">
+                  <div class="dm-search">Search apps…</div>
+                  <div class="dm-app-row" id="dmApp1"><b style="background:#2e86de">R</b>Realm Quest</div>
+                  <div class="dm-app-row"><b style="background:#d35400">S</b>Sky Raiders</div>
+                  <div class="dm-app-row"><b style="background:#16a085">P</b>Pixel Harvest</div>
+                  <div class="dm-app-row"><b style="background:#8e44ad">N</b>Notes</div>
+                </div>
+              </div>
+              <div>
+                <div class="dm-lbl">Quality</div>
+                <div class="dm-chips" id="dmChips"><span class="dm-chip">Ultra</span><span class="dm-chip" id="dmHigh">High</span><span class="dm-chip">Medium</span><span class="dm-chip">Low</span><span class="dm-chip">Eco</span></div>
+                <div class="dm-lbl">Options</div>
+                <div class="dm-opt" style="width:80%"></div><div class="dm-opt" style="width:65%"></div><div class="dm-opt" style="width:72%"></div><div class="dm-opt" style="width:50%"></div>
+              </div>
+            </div>
+            <div class="dm-mf"><span class="dm-cancel">Cancel</span><span class="dm-launch" id="dmLaunch">Launch</span></div>
+          </div></div>
+        </div>
+        <!-- The real app, running -->
+        <div class="dm-layer dm-final" id="dmFinal"><img src="assets/hero.png" alt="Vortynix running an instance"></div>
+        <!-- Overlays -->
+        <div class="dm-spot" id="dmSpot"></div>
+        <div class="dm-ripple" id="dmRipple"></div>
+        <div class="dm-finger" id="dmFinger"></div>
+        <div class="dm-cursor" id="dmCursor"><svg width="30" height="34" viewBox="0 0 26 30"><path d="M3 2 L3 24 L9 18.5 L13 27.5 L17 25.8 L13 17 L21 17 Z" fill="#fff" stroke="#0b0d10" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="demo-end" id="demoEnd">
+          <button class="btn btn-ghost" onclick="demoGo(0)">↻ Watch again</button>
+          <a href="https://www.patreon.com/cw/Vortynix" class="btn btn-primary">Get Vortynix on Patreon →</a>
+        </div>
+      </div>
+    </div>
+    <div class="demo-cap">
+      <div><div class="st" id="demoSt"></div><h4 id="demoTitle"></h4><p id="demoText"></p></div>
+      <div class="demo-ctrl">
+        <button onclick="demoGo(demoIdx-1)" aria-label="Previous step"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button onclick="demoToggle()" aria-label="Pause / play" id="demoPP"></button>
+        <button onclick="demoGo(demoIdx+1)" aria-label="Next step"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="demo-dots" id="demoDots"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ── Changelog data (generated from the app's changelog.json) ─────────── */
 const CHANGELOG = [
+ {
+  "ver": "v1.23.1",
+  "items": [
+   {
+    "t": "fix",
+    "txt": "Holding the click on the mirror works again as a long press. In 1.23.0 the press could be released by itself a moment later, so long-press actions (and holding with broadcast) didn't work."
+   }
+  ]
+ },
  {
   "ver": "v1.23.0",
   "items": [
@@ -1025,7 +1217,7 @@ function closeLegal(){
 }
 
 document.addEventListener('keydown', e=>{
-  if(e.key==='Escape'){ closeChangelog(); closeLegal(); }
+  if(e.key==='Escape'){ closeChangelog(); closeLegal(); if(typeof closeDemo==='function') closeDemo(); }
   if((e.key==='Enter'||e.key===' ') && document.activeElement && document.activeElement.classList.contains('eyebrow')){ e.preventDefault(); openChangelog(); }
 });
 
@@ -1057,6 +1249,210 @@ function handleLegalHash(){
 }
 handleLegalHash();
 window.addEventListener('hashchange', handleLegalHash);
+
+/* ── Guided tour: animated replay of the in-app tutorial ──────────────── */
+const $d = id => document.getElementById(id);
+let demoIdx = 0, demoTok = 0, demoPlaying = true, demoScale = 1, demoWavesOn = false, demoDone = {};
+const DM_PAUSE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+const DM_PLAY  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+
+const dmUsb = (a, b) => `<div class="dm-ptitle">Developer options</div>
+  <div class="dm-row"><span>Stay awake</span><span class="dm-tog"><i></i></span></div>
+  <div class="dm-row" id="dmRowUsb"><span>USB debugging</span><span class="dm-tog ${a ? 'on' : ''}" id="dmTogUsb"><i></i></span></div>
+  <div class="dm-row" id="dmRowSec"><span>USB debugging<br><small style="color:#888">(Security settings)</small></span><span class="dm-tog ${b ? 'on' : ''}" id="dmTogSec"><i></i></span></div>
+  <div class="dm-row"><span>Install via USB</span><span class="dm-tog"><i></i></span></div>`;
+const DM_SCREENS = {
+  build: `<div class="dm-ptitle">About phone</div>
+    <div class="dm-row"><span>Device name</span><em>•••</em></div>
+    <div class="dm-row"><span>Android version</span><em>14</em></div>
+    <div class="dm-row hl" id="dmBuild"><span>Build number</span><span class="dm-x7" id="dmX7"></span></div>
+    <div class="dm-row"><span>Status</span></div>
+    <div class="dm-toast" id="dmToast">You are now a developer!</div>`,
+  usb0: dmUsb(false, false),
+  usb1: dmUsb(true, false),
+  allow: dmUsb(true, true) + `<div class="dm-dim"></div>
+    <div class="dm-dialog"><b>Allow USB debugging?</b><small>RSA key fingerprint: 3F:A1:9C:42:7D:…</small>
+    <div class="dm-check" id="dmCheck"><span class="dm-box" id="dmBox"></span>Always allow from this computer</div>
+    <div class="dm-btns"><span>Cancel</span><span class="dm-allow" id="dmAllow">Allow</span></div></div>`,
+};
+
+// Lay a scene out from scratch, so any step can be shown directly.
+function dmState(o) {
+  ['dmPhone', 'dmApp', 'dmFinal'].forEach(id => $d(id).classList.toggle('on', id === o.layer));
+  if (o.screen) { $d('dmScreen').innerHTML = DM_SCREENS[o.screen]; $d('dmScreen').classList.toggle('dm-dlg-on', !!o.dlg); }
+  const st = $d('dmStatus');
+  st.classList.toggle('ok', !!o.found);
+  st.querySelector('span').textContent = o.found ? '1 device connected · Xiaomi Pad 6' : 'Scanning for devices…';
+  $d('dmModal').classList.toggle('on', !!o.modal);
+  $d('dmDev').classList.toggle('sel', !!o.dev);
+  $d('dmApp1').classList.toggle('sel', !!o.app);
+  $d('dmHigh').classList.toggle('sel', !!o.high);
+  $d('dmLaunch').classList.toggle('on', !!o.app);
+  $d('dmStarting').classList.toggle('on', !!o.starting);
+  $d('dmNew').style.visibility = o.starting ? 'hidden' : '';
+  $d('demoEnd').classList.toggle('on', !!o.end);
+  dmSpot(null);
+  $d('dmCursor').classList.toggle('on', !!o.cursor);
+  $d('dmFinger').classList.toggle('on', !!o.finger);
+  if (o.layer === 'dmApp' && !demoWavesOn && window.vtxWaves) { demoWavesOn = true; vtxWaves($d('dmWaves'), { lines: 36, center: .5, alpha: .34, fps: 45 }); }
+}
+// Element centre in the 1280×720 scene's own coordinates.
+function dmXY(el) {
+  const r = el.getBoundingClientRect(), d = $d('dm').getBoundingClientRect();
+  return { x: (r.left + r.width / 2 - d.left) / demoScale, y: (r.top + r.height / 2 - d.top) / demoScale, w: r.width / demoScale, h: r.height / demoScale };
+}
+function dmPlace(node, x, y, instant) {
+  if (instant) { node.style.transition = 'none'; node.style.transform = `translate(${x}px,${y}px)`; void node.offsetWidth; node.style.transition = ''; }
+  else node.style.transform = `translate(${x}px,${y}px)`;
+}
+function dmSpot(el, pad = 10) {
+  const s = $d('dmSpot');
+  if (!el) { s.classList.remove('on'); return; }
+  const p = dmXY(el);
+  Object.assign(s.style, { left: (p.x - p.w / 2 - pad) + 'px', top: (p.y - p.h / 2 - pad) + 'px', width: (p.w + pad * 2) + 'px', height: (p.h + pad * 2) + 'px' });
+  s.classList.add('on');
+}
+function dmRipple(el) {
+  const p = dmXY(el), r = $d('dmRipple');
+  r.style.left = p.x + 'px'; r.style.top = p.y + 'px';
+  r.classList.remove('go'); void r.offsetWidth; r.classList.add('go');
+}
+const dmWait = (ms, tok) => new Promise(res => setTimeout(() => res(tok === demoTok), ms));
+async function dmCursorTo(el, tok) { const p = dmXY(el); dmPlace($d('dmCursor'), p.x - 4, p.y - 3); return dmWait(950, tok); }
+async function dmFingerTo(el, tok) { const p = dmXY(el); dmPlace($d('dmFinger'), p.x, p.y); return dmWait(750, tok); }
+async function dmClick(el, tok) {
+  const c = $d('dmCursor'); c.classList.add('press'); dmRipple(el);
+  const ok = await dmWait(160, tok); c.classList.remove('press'); return ok;
+}
+
+const DEMO_STEPS = [
+  { t: 'Turn on Developer options', p: 'On your phone open <b>Settings → About phone</b> and tap <b>Build number</b> 7 times. On Xiaomi it’s <b>OS version</b>.',
+    run: async tok => {
+      dmState({ layer: 'dmPhone', screen: 'build', finger: true });
+      dmPlace($d('dmFinger'), 760, 640, true);
+      if (!await dmWait(500, tok) || !await dmFingerTo($d('dmBuild'), tok)) return false;
+      for (let n = 1; n <= 7; n++) { dmRipple($d('dmBuild')); $d('dmX7').textContent = '×' + n; if (!await dmWait(260, tok)) return false; }
+      $d('dmToast').classList.add('on'); return dmWait(1800, tok);
+    } },
+  { t: 'Turn on USB debugging', p: 'Go to <b>Developer options</b> and switch on <b>USB debugging</b> — this is what lets Vortynix show your screen.',
+    run: async tok => {
+      dmState({ layer: 'dmPhone', screen: 'usb0', finger: true });
+      dmPlace($d('dmFinger'), 760, 640, true);
+      if (!await dmWait(400, tok) || !await dmFingerTo($d('dmTogUsb'), tok)) return false;
+      dmRipple($d('dmTogUsb')); $d('dmTogUsb').classList.add('on'); $d('dmRowUsb').classList.add('hl');
+      return dmWait(1700, tok);
+    } },
+  { t: '…and USB debugging (Security settings)', p: 'Switch this one on too: it lets your clicks and keys control the phone. Xiaomi may ask for a Mi account — only once.',
+    run: async tok => {
+      dmState({ layer: 'dmPhone', screen: 'usb1', finger: true });
+      const p = dmXY($d('dmTogUsb')); dmPlace($d('dmFinger'), p.x, p.y, true);
+      if (!await dmWait(300, tok) || !await dmFingerTo($d('dmTogSec'), tok)) return false;
+      dmRipple($d('dmTogSec')); $d('dmTogSec').classList.add('on'); $d('dmRowSec').classList.add('hl');
+      return dmWait(1900, tok);
+    } },
+  { t: 'Plug in and allow this computer', p: 'Connect the USB cable. Tick <b>Always allow from this computer</b> and tap <b>Allow</b>.',
+    run: async tok => {
+      dmState({ layer: 'dmPhone', screen: 'allow', finger: true });
+      dmPlace($d('dmFinger'), 760, 640, true);
+      if (!await dmWait(500, tok)) return false;
+      $d('dmScreen').classList.add('dm-dlg-on');
+      if (!await dmWait(600, tok) || !await dmFingerTo($d('dmBox'), tok)) return false;
+      dmRipple($d('dmBox')); $d('dmBox').classList.add('on');
+      if (!await dmWait(500, tok) || !await dmFingerTo($d('dmAllow'), tok)) return false;
+      dmRipple($d('dmAllow'));
+      if (!await dmWait(350, tok)) return false;
+      $d('dmScreen').classList.remove('dm-dlg-on'); $d('dmFinger').classList.remove('on');
+      return dmWait(1100, tok);
+    } },
+  { t: 'Vortynix finds your device', p: 'Nothing to install on the phone — it shows up on its own, over USB or Wi-Fi.',
+    run: async tok => {
+      dmState({ layer: 'dmApp' });
+      if (!await dmWait(450, tok)) return false;
+      dmSpot($d('dmStatus'));
+      if (!await dmWait(1300, tok)) return false;
+      $d('dmStatus').classList.add('ok'); $d('dmStatus').querySelector('span').textContent = '1 device connected · Xiaomi Pad 6';
+      dmSpot($d('dmStatus'));
+      return dmWait(1700, tok);
+    } },
+  { t: 'Open a new instance', p: 'Click <b>+ New instance</b>.',
+    run: async tok => {
+      dmState({ layer: 'dmApp', found: true, cursor: true });
+      dmPlace($d('dmCursor'), 1040, 620, true);
+      if (!await dmWait(350, tok)) return false;
+      dmSpot($d('dmNew'), 8);
+      if (!await dmCursorTo($d('dmNew'), tok) || !await dmClick($d('dmNew'), tok)) return false;
+      dmSpot(null); $d('dmModal').classList.add('on');
+      return dmWait(1300, tok);
+    } },
+  { t: 'Pick the device and the app', p: 'Choose where it runs and what to open — any app on the phone.',
+    run: async tok => {
+      dmState({ layer: 'dmApp', found: true, modal: true, cursor: true });
+      const n = dmXY($d('dmNew')); dmPlace($d('dmCursor'), n.x, n.y, true);
+      if (!await dmWait(400, tok)) return false;
+      dmSpot($d('dmDev'), 6);
+      if (!await dmCursorTo($d('dmDev'), tok) || !await dmClick($d('dmDev'), tok)) return false;
+      $d('dmDev').classList.add('sel');
+      if (!await dmWait(500, tok)) return false;
+      dmSpot($d('dmApps'), 6);
+      if (!await dmCursorTo($d('dmApp1'), tok) || !await dmClick($d('dmApp1'), tok)) return false;
+      $d('dmApp1').classList.add('sel'); $d('dmLaunch').classList.add('on');
+      return dmWait(1300, tok);
+    } },
+  { t: 'Choose the quality', p: '<b>High</b> suits most setups. Lighter PC or phone? Try <b>Medium</b> or <b>Eco</b> — you can change it anytime.',
+    run: async tok => {
+      dmState({ layer: 'dmApp', found: true, modal: true, dev: true, app: true, cursor: true });
+      const a = dmXY($d('dmApp1')); dmPlace($d('dmCursor'), a.x, a.y, true);
+      if (!await dmWait(300, tok)) return false;
+      dmSpot($d('dmChips'), 8);
+      if (!await dmCursorTo($d('dmHigh'), tok) || !await dmClick($d('dmHigh'), tok)) return false;
+      $d('dmHigh').classList.add('sel');
+      return dmWait(1500, tok);
+    } },
+  { t: 'Launch', p: 'One click and the app opens in its own tab, on its own virtual display.',
+    run: async tok => {
+      dmState({ layer: 'dmApp', found: true, modal: true, dev: true, app: true, high: true, cursor: true });
+      const h = dmXY($d('dmHigh')); dmPlace($d('dmCursor'), h.x, h.y, true);
+      if (!await dmWait(300, tok)) return false;
+      dmSpot($d('dmLaunch'), 8);
+      if (!await dmCursorTo($d('dmLaunch'), tok) || !await dmClick($d('dmLaunch'), tok)) return false;
+      dmSpot(null); $d('dmModal').classList.remove('on'); $d('dmCursor').classList.remove('on');
+      $d('dmStarting').classList.add('on'); $d('dmNew').style.visibility = 'hidden';
+      return dmWait(1500, tok);
+    } },
+  { t: 'You’re in!', p: 'Your first mirror is running. Open as many as you like — and on first launch, the app walks you through all of this itself.',
+    run: async tok => { dmState({ layer: 'dmFinal', end: true }); return dmWait(6000, tok); } },
+];
+
+function demoDots() {
+  $d('demoDots').innerHTML = DEMO_STEPS.map((_, i) => `<i class="${i < demoIdx ? 'done' : ''}" onclick="demoGo(${i})"><b></b></i>`).join('');
+}
+async function demoGo(i) {
+  if (i < 0) i = 0;
+  if (i >= DEMO_STEPS.length) i = DEMO_STEPS.length - 1;
+  const tok = ++demoTok; demoIdx = i;
+  const s = DEMO_STEPS[i];
+  $d('demoSt').textContent = `Step ${i + 1} of ${DEMO_STEPS.length}`;
+  $d('demoTitle').textContent = s.t; $d('demoText').innerHTML = s.p;
+  demoDots();
+  const bar = $d('demoDots').children[i].querySelector('b');
+  bar.style.transition = 'none'; bar.style.width = '0'; void bar.offsetWidth;
+  bar.style.transition = 'width 5s linear'; bar.style.width = '100%';
+  const ok = await s.run(tok);
+  if (!ok || tok !== demoTok) return;
+  bar.style.transition = 'width .2s'; bar.style.width = '100%';
+  if (i === DEMO_STEPS.length - 1) return;               // stay on the final screen
+  while (!demoPlaying) { if (!await dmWait(200, tok)) return; }
+  if (tok === demoTok) demoGo(i + 1);
+}
+function demoToggle() { demoPlaying = !demoPlaying; $d('demoPP').innerHTML = demoPlaying ? DM_PAUSE : DM_PLAY; }
+function demoFit() { demoScale = $d('demoStage').clientWidth / 1280; $d('dm').style.transform = `scale(${demoScale})`; }
+function openDemo() {
+  $d('demo-backdrop').classList.add('open'); document.body.style.overflow = 'hidden';
+  demoPlaying = true; $d('demoPP').innerHTML = DM_PAUSE;
+  requestAnimationFrame(() => { demoFit(); demoGo(0); });
+}
+function closeDemo() { demoTok++; $d('demo-backdrop').classList.remove('open'); document.body.style.overflow = ''; }
+addEventListener('resize', () => { if ($d('demo-backdrop').classList.contains('open')) { demoFit(); demoGo(demoIdx); } });
 
 /* ── Animated ribbon of light lines (same as the Vortynix app) ───────────── */
 (function(){
@@ -1090,6 +1486,7 @@ window.addEventListener('hashchange', handleLegalHash);
     try{ new IntersectionObserver(es=>{ visible=es[0].isIntersecting; }).observe(canvas); }catch(e){}
     (function loop(now){ requestAnimationFrame(loop); if(document.hidden||!visible) return; if(now-last<1000/FPS) return; last=now; draw(now); })(performance.now());
   }
+  window.vtxWaves = waves;
   waves(document.getElementById('heroWaves'), { lines:44, center:.42, alpha:.38 });
   waves(document.getElementById('getWaves'),  { lines:28, center:.55, alpha:.30, amp:.16, spread:.30, fps:45 });
 })();
