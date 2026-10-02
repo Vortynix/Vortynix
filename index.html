@@ -410,6 +410,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px;border:3px solid var(--surface)}
 html::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px;border:3px solid var(--bg)}
 .modal-body::-webkit-scrollbar-thumb:hover,html::-webkit-scrollbar-thumb:hover{background:rgba(92,224,200,.5)}
+
+/* Live mirror: animated scene placed exactly over the mirror area of hero.png
+   (measured from the real app render: 1443.6×812 at (78.2, 88) in 1600×900). */
+.hero-live{position:absolute;left:4.8889%;top:9.7778%;width:90.2222%;height:90.2222%;pointer-events:none}
+.live-mirror{display:block;width:100%;height:100%}
 </style>
 </head>
 <body>
@@ -448,6 +453,7 @@ html::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10p
 
     <div class="hero-shot reveal">
       <img src="assets/hero.png" alt="Vortynix with four Android instances open in tabs, the active one showing a game">
+      <div class="hero-live" id="heroLive"></div>
     </div>
   </div>
 
@@ -734,7 +740,7 @@ html::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10p
           </div></div>
         </div>
         <!-- The real app, running -->
-        <div class="dm-layer dm-final" id="dmFinal"><img src="assets/hero.png" alt="Vortynix running an instance"></div>
+        <div class="dm-layer dm-final" id="dmFinal"><img src="assets/hero.png" alt="Vortynix running an instance"><div class="hero-live" id="dmLive"></div></div>
         <!-- Overlays -->
         <div class="dm-spot" id="dmSpot"></div>
         <div class="dm-ripple" id="dmRipple"></div>
@@ -1453,6 +1459,192 @@ function openDemo() {
 }
 function closeDemo() { demoTok++; $d('demo-backdrop').classList.remove('open'); document.body.style.overflow = ''; }
 addEventListener('resize', () => { if ($d('demo-backdrop').classList.contains('open')) { demoFit(); demoGo(demoIdx); } });
+
+/* ── Live mirror: the hero screenshot's game scene, animated ──────────────
+   The screenshot stays as the frame (the app's real top bar and tabs); a
+   canvas on top of the mirror area plays an original RPG-style scene. Same
+   scene as the picture, but alive. Pauses off-screen; still frame with
+   reduced motion. */
+(function(){
+  const VW = 1920, VH = 1080;                        // scene coordinates
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let base = null, water = [];
+  const P = {sky0:'#2d4a3a',sky1:'#1a2b22',grass:['#4f8a4a','#5a9650','#477f43','#62a058'],water:'#3b7ea8',path:'#b39b6e',trunk:'#5b3a22',leaf:'#2f6e3a',rock:'#7d8590',crystal:'#7de3d0'};
+  const CLEAR = {x0:500, x1:1480, y0:380, y1:900};   // where characters roam (kept free of props)
+
+  function buildBase(){
+    const c = document.createElement('canvas'); c.width = VW; c.height = VH;
+    const g = c.getContext('2d');
+    let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const sky = g.createLinearGradient(0,0,0,VH); sky.addColorStop(0,P.sky0); sky.addColorStop(1,P.sky1);
+    g.fillStyle = sky; g.fillRect(0,0,VW,VH);
+    const tw = 128, th = 64, ox = VW/2, oy = 120;
+    for (let r = 0; r < 22; r++) for (let cc = 0; cc < 22; cc++) {
+      const x = ox + (cc - r) * tw/2, y = oy + (cc + r) * th/2;
+      if (x < -tw || x > VW + tw || y < -th || y > VH + th) continue;
+      const n = Math.sin(cc*.7 + 7) + Math.cos(r*.6 - 3.5) + rnd()*.6;
+      const isW = n < -1.1, path = Math.abs(cc - r - 2) < 1 || Math.abs(cc + r - 20) < 1;
+      g.beginPath(); g.moveTo(x,y); g.lineTo(x+tw/2,y+th/2); g.lineTo(x,y+th); g.lineTo(x-tw/2,y+th/2); g.closePath();
+      g.fillStyle = isW ? P.water : path ? P.path : P.grass[(cc*7 + r*3) % P.grass.length]; g.fill();
+      g.strokeStyle = 'rgba(0,0,0,.12)'; g.lineWidth = 1; g.stroke();
+      if (isW) water.push({x, y, ph: rnd()*6.28});
+    }
+    const props = [];
+    for (let i = 0; i < 60 && props.length < 24; i++) {
+      const p = {x: rnd()*VW, y: 220 + rnd()*(VH-360), k: rnd()};
+      const inClear = p.x > CLEAR.x0 - 40 && p.x < CLEAR.x1 + 40 && p.y > CLEAR.y0 - 20;
+      const inHud = (p.x < 520 && p.y > VH - 330) || (p.x < 470 && p.y < 260) || (p.x > VW - 260 && p.y < 260);
+      if (!inClear && !inHud) props.push(p);
+    }
+    props.sort((a,b) => a.y - b.y);
+    for (const p of props) {
+      if (p.k < .6) {
+        g.fillStyle='rgba(0,0,0,.25)'; g.beginPath(); g.ellipse(p.x,p.y+6,34,12,0,0,7); g.fill();
+        g.fillStyle=P.trunk; g.fillRect(p.x-6,p.y-40,12,44);
+        for (const [dx,dy,rr] of [[0,-78,40],[-24,-58,28],[24,-60,30]]) { g.fillStyle=P.leaf; g.beginPath(); g.arc(p.x+dx,p.y+dy,rr,0,7); g.fill(); }
+        g.fillStyle='rgba(255,255,255,.12)'; g.beginPath(); g.arc(p.x-12,p.y-92,16,0,7); g.fill();
+      } else if (p.k < .85) {
+        g.fillStyle=P.rock; g.beginPath(); g.moveTo(p.x-26,p.y); g.lineTo(p.x-14,p.y-28); g.lineTo(p.x+10,p.y-34); g.lineTo(p.x+28,p.y-6); g.closePath(); g.fill();
+      } else {
+        g.fillStyle=P.crystal; g.beginPath(); g.moveTo(p.x,p.y-60); g.lineTo(p.x+14,p.y-20); g.lineTo(p.x,p.y); g.lineTo(p.x-14,p.y-20); g.closePath(); g.fill();
+        g.fillStyle='rgba(255,255,255,.35)'; g.beginPath(); g.moveTo(p.x,p.y-60); g.lineTo(p.x+5,p.y-22); g.lineTo(p.x,p.y-4); g.closePath(); g.fill();
+      }
+    }
+    base = c;
+  }
+
+  // ── actors ──
+  const heroes = [
+    {n:'Aldric',   cape:'#c0392b', hat:'#2e86de', lead:true},
+    {n:'Seraphine',cape:'#2e86de', hat:'#8e44ad'},
+    {n:'Kael',     cape:'#8e44ad', hat:'#f39c12'},
+    {n:'Mira',     cape:'#f39c12', hat:'#c0392b'},
+  ];
+  const slimes = [{x:900,y:560,c:'#7bd66b'},{x:1250,y:760,c:'#d66b9a'},{x:700,y:820,c:'#6bb8d6'}];
+  heroes.forEach((h,i)=>{ h.x = 640 + i*200; h.y = 540 + (i%2)*120; h.tx = h.x; h.ty = h.y; h.wait = i*.7; h.dir = 1; });
+  const fx = [], floats = [];
+  const CHAT_POOL = [
+    ['[Party] Seraphine: ready for the dungeon?','#9fd6ff'],['[Party] Kael: buffs up, go!','#9fd6ff'],['[Guild] Mira: crafting done ✓','#b6f0a8'],
+    ['You gained 1,250 XP','#ffe08a'],['Aldric: on my way','#e8eef4'],['[Trade] selling rare ore','#f0c6ff'],['[Party] Mira: slime down!','#9fd6ff'],
+    ['Loot: Crystal Shard ×2','#ffe08a'],['[Guild] Kael: boss at 9pm?','#b6f0a8'],['[Party] Aldric: pull the next one','#9fd6ff'],
+  ];
+  let chat = CHAT_POOL.slice(0,6).map(l => ({l, born:-9})), chatNext = 3, chatI = 6;
+  let castNext = 1.5, cdStart = -9, mp = .64, hp = .82, lastT = 0;
+
+  function pickTarget(h){ h.tx = CLEAR.x0 + 80 + Math.random()*(CLEAR.x1-CLEAR.x0-160); h.ty = CLEAR.y0 + 90 + Math.random()*(CLEAR.y1-CLEAR.y0-150); }
+
+  function step(t, dt){
+    for (const h of heroes) {
+      if (h.wait > 0) { h.wait -= dt; continue; }
+      const dx = h.tx - h.x, dy = h.ty - h.y, d = Math.hypot(dx,dy);
+      if (d < 4) { h.wait = 1 + Math.random()*2.5; pickTarget(h); continue; }
+      const v = 70 * dt; h.x += dx/d * Math.min(v,d); h.y += dy/d * Math.min(v,d); if (Math.abs(dx) > 2) h.dir = dx > 0 ? 1 : -1;
+    }
+    if (t > castNext) {                                  // someone casts at a slime
+      const h = heroes[Math.floor(Math.random()*heroes.length)], m = slimes[Math.floor(Math.random()*slimes.length)];
+      const col = ['#7de3d0','#ffd36b','#b49bff','#ff8a6b'][heroes.indexOf(h)];
+      fx.push({x:m.x, y:m.y-14, t0:t, col});
+      floats.push({x:m.x, y:m.y-50, t0:t, txt:'-'+(200+Math.floor(Math.random()*600)), col:'#ffe08a'});
+      if (h.lead) { cdStart = t; mp = Math.max(.25, mp - .12); }
+      castNext = t + 1.6 + Math.random()*1.6;
+    }
+    if (t > chatNext) { chat.push({l: CHAT_POOL[chatI++ % CHAT_POOL.length], born:t}); if (chat.length > 6) chat.shift(); chatNext = t + 3 + Math.random()*2; }
+    mp = Math.min(.9, mp + dt*.02); hp = .78 + Math.sin(t*.4)*.06;
+  }
+
+  function draw(g, t){
+    g.drawImage(base, 0, 0);
+    // water shimmer
+    for (const w of water) {
+      const a = .10 + .10*Math.sin(t*1.6 + w.ph);
+      g.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+      g.beginPath(); g.ellipse(w.x + 12*Math.sin(t*.7 + w.ph), w.y + 32, 22, 6, 0, 0, 7); g.fill();
+    }
+    // slimes (bouncing)
+    for (const [i,m] of slimes.entries()) {
+      const b = Math.abs(Math.sin(t*3 + i)) , sq = 1 + (1-b)*.18;
+      g.fillStyle='rgba(0,0,0,.28)'; g.beginPath(); g.ellipse(m.x, m.y+4, 22, 7, 0, 0, 7); g.fill();
+      g.fillStyle=m.c; g.beginPath(); g.ellipse(m.x, m.y - 14 - b*10, 20*sq, 16/sq, 0, 0, 7); g.fill();
+      g.fillStyle='#1b2a1b'; g.fillRect(m.x-7, m.y-20-b*10, 3, 4); g.fillRect(m.x+4, m.y-20-b*10, 3, 4);
+    }
+    // heroes, back to front
+    [...heroes].sort((a,b) => a.y - b.y).forEach(h => {
+      const moving = h.wait <= 0, bob = moving ? Math.abs(Math.sin(t*9 + h.x*.01))*4 : Math.sin(t*2)*1;
+      const x = h.x, y = h.y - bob;
+      g.fillStyle='rgba(0,0,0,.3)'; g.beginPath(); g.ellipse(h.x, h.y+4, 26, 9, 0, 0, 7); g.fill();
+      g.fillStyle=h.cape; g.beginPath(); g.moveTo(x-20,y); g.lineTo(x-13,y-52); g.lineTo(x+13,y-52); g.lineTo(x+20,y); g.closePath(); g.fill();
+      g.fillStyle='#f1d3b3'; g.beginPath(); g.arc(x, y-64, 14, 0, 7); g.fill();
+      g.fillStyle=h.hat; g.beginPath(); g.arc(x, y-70, 15, Math.PI, 0); g.fill();
+      g.fillStyle='#1b1b1b'; g.fillRect(x + h.dir*5 - 1.5, y-66, 3, 3);
+      g.font='600 20px system-ui'; const w = g.measureText(h.n).width + 18;
+      g.fillStyle='rgba(8,10,14,.7)'; g.fillRect(x - w/2, y-112, w, 26);
+      g.fillStyle = h.lead ? '#ffe08a' : '#e8eef4'; g.textAlign='center'; g.fillText(h.n, x, y-93); g.textAlign='left';
+    });
+    // spell rings + floating numbers
+    for (let i = fx.length-1; i >= 0; i--) { const f = fx[i], k = (t - f.t0)/.7; if (k > 1) { fx.splice(i,1); continue; }
+      g.strokeStyle = f.col; g.globalAlpha = 1-k; g.lineWidth = 6*(1-k)+1; g.beginPath(); g.ellipse(f.x, f.y, 20+60*k, 8+22*k, 0, 0, 7); g.stroke(); g.globalAlpha = 1; }
+    for (let i = floats.length-1; i >= 0; i--) { const f = floats[i], k = (t - f.t0)/1.2; if (k > 1) { floats.splice(i,1); continue; }
+      g.globalAlpha = 1-k; g.font='800 30px system-ui'; g.textAlign='center'; g.lineWidth = 5; g.strokeStyle='rgba(0,0,0,.6)';
+      g.strokeText(f.txt, f.x, f.y - 50*k); g.fillStyle=f.col; g.fillText(f.txt, f.x, f.y - 50*k); g.textAlign='left'; g.globalAlpha = 1; }
+    // drifting cloud shadows
+    for (const [i,cl] of [[0,.018],[1,.012]].entries()) {
+      const cx = ((t*VW*cl[1]*2 + i*900) % (VW+800)) - 400, cy = 300 + i*380;
+      const gr = g.createRadialGradient(cx, cy, 40, cx, cy, 360); gr.addColorStop(0,'rgba(0,0,0,.16)'); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle = gr; g.fillRect(cx-400, cy-260, 800, 520);
+    }
+    // HUD: portrait + bars
+    g.fillStyle='rgba(8,10,14,.72)'; g.fillRect(24,24,420,108); g.strokeStyle='rgba(255,255,255,.15)'; g.strokeRect(24,24,420,108);
+    g.fillStyle=heroes[0].cape; g.beginPath(); g.arc(78,78,38,0,7); g.fill();
+    g.fillStyle='#e8eef4'; g.font='700 22px system-ui'; g.fillText('Aldric  ·  Lv 142',130,60);
+    const bar=(y,c,f)=>{ g.fillStyle='rgba(255,255,255,.12)'; g.fillRect(130,y,290,16); g.fillStyle=c; g.fillRect(130,y,290*f,16); };
+    bar(76,'#e05656',hp); bar(100,'#4f8ff7',mp);
+    // minimap
+    g.fillStyle='rgba(8,10,14,.72)'; g.beginPath(); g.arc(VW-120,120,92,0,7); g.fill();
+    g.save(); g.beginPath(); g.arc(VW-120,120,86,0,7); g.clip();
+    g.fillStyle=P.grass[0]; g.fillRect(VW-210,30,180,180); g.fillStyle=P.water; g.fillRect(VW-180,70,60,40); g.fillStyle=P.path; g.fillRect(VW-210,130,180,12);
+    heroes.forEach((h,i)=>{ g.fillStyle = i ? '#9fd6ff' : '#ffe08a'; g.beginPath(); g.arc(VW-210 + (h.x/VW)*180, 30 + (h.y/VH)*180, i?4:6, 0, 7); g.fill(); });
+    g.restore();
+    // action bar with a cooldown sweep on slot 1
+    const slots=10, sw=72, bx=VW/2-(slots*sw)/2, SK=['#e74c3c','#3498db','#f1c40f','#9b59b6','#1abc9c'];
+    g.fillStyle='rgba(8,10,14,.75)'; g.fillRect(bx-12,VH-112,slots*sw+24,92);
+    for (let i=0;i<slots;i++){ const x=bx+i*sw+6, y=VH-102;
+      g.fillStyle='rgba(255,255,255,.08)'; g.fillRect(x,y,sw-12,60); g.fillStyle=SK[i%SK.length]; g.beginPath();
+      if(i%3===0) g.arc(x+30,y+30,18,0,7); else if(i%3===1){ g.moveTo(x+30,y+10); g.lineTo(x+50,y+48); g.lineTo(x+10,y+48); } else g.rect(x+14,y+14,32,32);
+      g.fill(); g.fillStyle='rgba(255,255,255,.7)'; g.font='600 13px system-ui'; g.fillText(String((i+1)%10),x+4,y+16);
+      if (i===0) { const k = (t - cdStart)/2.2; if (k >= 0 && k < 1) { g.fillStyle='rgba(0,0,0,.6)'; g.beginPath(); g.moveTo(x+30,y+30); g.arc(x+30,y+30,42,-Math.PI/2+k*Math.PI*2,Math.PI*1.5); g.closePath(); g.save(); g.clip(); g.fillRect(x,y,sw-12,60); g.restore(); } }
+    }
+    // chat
+    g.fillStyle='rgba(8,10,14,.62)'; g.fillRect(24,VH-300,470,270); g.font='500 18px system-ui';
+    chat.forEach((m,i)=>{ const a = Math.min(1,(t-m.born)/.5); g.globalAlpha = a; g.fillStyle=m.l[1]; g.fillText(m.l[0],42,VH-266+i*34 + (1-a)*8); g.globalAlpha = 1; });
+  }
+
+  function mount(host, isActive){
+    if (!host) return;
+    const cv = document.createElement('canvas');
+    cv.className = 'live-mirror'; cv.setAttribute('aria-hidden','true');
+    host.appendChild(cv);
+    const g = cv.getContext('2d');
+    if (!base) buildBase();
+    let visible = true, last = 0;
+    function frame(now){
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const w = Math.round(cv.clientWidth*dpr), h = Math.round(cv.clientHeight*dpr);
+      if (w < 2 || h < 2) return;
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+      const t = now/1000, dt = Math.min(.1, lastT ? t - lastT : 0); lastT = t;
+      step(t, dt);
+      g.setTransform(w/VW, 0, 0, h/VH, 0, 0);
+      draw(g, t);
+    }
+    if (reduce) { requestAnimationFrame(frame); addEventListener('resize', () => requestAnimationFrame(frame)); return; }
+    try { new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cv); } catch(e) {}
+    (function loop(now){ requestAnimationFrame(loop);
+      if (document.hidden || !visible || (isActive && !isActive())) return;
+      if (now - last < 1000/30) return; last = now; frame(now); })(performance.now());
+  }
+  mount(document.getElementById('heroLive'));
+  mount(document.getElementById('dmLive'), () => document.getElementById('dmFinal').classList.contains('on'));
+})();
 
 /* ── Animated ribbon of light lines (same as the Vortynix app) ───────────── */
 (function(){
